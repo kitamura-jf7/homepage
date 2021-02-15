@@ -1,0 +1,399 @@
+<HTML>
+
+<HEAD>
+  <TITLE>北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+</HEAD>
+
+<SCRIPT TYPE="text/javascript"><!--
+    wcnt_lk = 0;
+function f_chk_upnew(day, upnew) {
+    var today = new Date();
+    today -= 31*1000*60*60*24;  /*  １ヶ月の期間を考慮  */
+    document.write(" - ", day.getFullYear(), "/", day.getMonth()+1, "/", day.getDate());
+    document.write(" ");
+    if (today <= day) {
+        document.write("<IMG SRC=\"img/", upnew, "-b7.gif\" ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\">");
+        document.write(" ");
+    }
+}
+function f_date(y, m, d) {
+    return(new Date(y, m-1, d));
+}
+function f_my_tool(desc, icon, link, newday, upday, ver, rank) {
+    var img1 = "img/pt04-10.gif";
+    var img2 = "img/pt04-07.gif";
+    document.write("<P>");
+    document.write("<IMG SRC=\"", img1, "\" NAME=lk", wcnt_lk, " ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\" onMouseOver=\"this.src='", img2, "'\" onMouseOut=\"this.src='", img1, "'\">");
+    if (link.indexOf("http://") == -1) {
+        document.write("<A HREF=\"", link, "\" onMouseOver=\"lk", wcnt_lk, ".src='", img2, "'\" onMouseOut=\"lk", wcnt_lk, ".src='", img1, "'\">");
+    } else {
+        document.write("<A HREF=\"", link, "\" TARGET=\"_top\" onMouseOver=\"lk", wcnt_lk, ".src='", img2, "'\" onMouseOut=\"lk", wcnt_lk, ".src='", img1, "'\">");
+    }
+//    document.write("<IMG SRC=\"img/boxanime1.gif\" ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\">");
+    if (icon != "") {
+        document.write("<IMG SRC=\"", icon, "\" ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\">");
+    }
+    document.write("<B>", desc, "</B>");
+    document.write("</A>");
+    document.write("&nbsp;(", rank, ")");
+    document.write("&nbsp;Ver ", ver);
+    if ((newday.getFullYear()+"/"+newday.getMonth()+100+"/"+newday.getDate()+100) == (upday.getFullYear()+"/"+upday.getMonth()+100+"/"+upday.getDate()+100)) {
+        f_chk_upnew(newday, "new")
+    } else {
+        f_chk_upnew(upday, "up")
+    }
+    document.write("<BR CLEAR=\"ALL\"></P>");
+    wcnt_lk = wcnt_lk+1;
+}
+function f_link(desc, icon, desc2, link, img1, img2, topbot) {
+    document.write("<", topbot, ">");
+    document.write("<IMG SRC=\"", img1, "\" NAME=lk", wcnt_lk, " ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\" onMouseOver=\"this.src='", img2, "'\" onMouseOut=\"this.src='", img1, "'\">");
+    if (link.indexOf("http://") == -1) {
+        document.write("<A HREF=\"", link, "\" onMouseOver=\"lk", wcnt_lk, ".src='", img2, "'\" onMouseOut=\"lk", wcnt_lk, ".src='", img1, "'\">");
+    } else {
+        document.write("<A HREF=\"", link, "\" TARGET=\"_top\" onMouseOver=\"lk", wcnt_lk, ".src='", img2, "'\" onMouseOut=\"lk", wcnt_lk, ".src='", img1, "'\">");
+    }
+    if (icon != "") {
+        document.write("<IMG SRC=\"", icon, "\" ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\">");
+    }
+    document.write(desc);
+    document.write("</A><BR>");
+    if (desc2 != "") {
+        document.write(desc2);
+        document.write("</A><BR>");
+    }
+    document.write("</", topbot, ">");
+    wcnt_lk = wcnt_lk+1;
+}
+// --></SCRIPT>
+
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtopic"></A>
+
+    <DT><span class="sec01">ニュース</span></DT>
+    <UL>
+        <LI>自動入力くん が窓の杜今日のお気に入りで紹介されました^^
+        <DT><A HREF="http://www.forest.impress.co.jp/docs/serial/okiniiri/20100607_372685.html" TARGET="_top">
+            http://www.forest.impress.co.jp/docs/serial/okiniiri/20100607_372685.html
+        </A></DT>
+        <LI>SlideCalendar がベクターソフトニュースで紹介されました^^
+        <DT><A HREF="http://www.vector.co.jp/magazine/softnews/070210/n0702103.html" TARGET="_top">
+            http://www.vector.co.jp/magazine/softnews/070210/n0702103.html
+        </A></DT>
+        <LI>SlideCalendar が窓の杜NEWSで紹介されました^^
+        <DT><A HREF="http://www.forest.impress.co.jp/article/2007/02/27/slidecalendar.html" TARGET="_top">
+            http://www.forest.impress.co.jp/article/2007/02/27/slidecalendar.html
+        </A></DT>
+    </UL>
+    <BR CLEAR="ALL">
+
+    <A NAME="lblib"></A>
+    ライブラリ(自作ソフト)
+    <BLOCKQUOTE>
+        <SCRIPT TYPE="text/javascript"><!--
+            f_my_tool("KiEditor"
+                    , ""
+                    , "doc/KiEditor.html"
+                    , f_date(2008,  6,  2)
+                    , f_date(2020,  5, 19)
+                    , "1.75.g2"
+                    , "Shareware"
+                    )
+            f_my_tool("KNIGHT2.000"
+                    , "img/KNIGHT2.gif"
+                    , "doc/KNIGHT2.html"
+                    , f_date(1999, 10, 15)
+                    , f_date(2004,  4, 21)
+                    , "0.10.06"
+                    , "Freeware"
+                    )
+            f_my_tool("自動入力くん"
+                    , ""
+                    , "doc/AUTOKEY.html"
+                    , f_date(2001, 11, 14)
+                    , f_date(2014, 10, 19)
+                    , "0.33.26"
+                    , "Freeware"
+                    )
+            f_my_tool("ノーツメール転送"
+                    , ""
+                    , "doc/FwNotes.html"
+                    , f_date(2002,  3,  5)
+                    , f_date(2020,  5,  8)
+                    , "1.55.45"
+                    , "Shareware"
+                    )
+            f_my_tool("SlideCalendar"
+                    , ""
+                    , "doc/SlideCal.html"
+                    , f_date(2007,  1, 27)
+                    , f_date(2020, 12, 12)
+                    , "2.25.39"
+                    , "Freeware"
+                    )
+            f_my_tool("VMG→mbox一括変換"
+                    , ""
+                    , "doc/VMG2mbox.html"
+                    , f_date(2006, 11, 23)
+                    , f_date(2007,  3, 31)
+                    , "1.02.01"
+                    , "Freeware"
+                    )
+            f_my_tool("Info Monitor"
+                    , ""
+                    , "doc/InfoMonitor.html"
+                    , f_date(2006,  9, 18)
+                    , f_date(2006, 11, 28)
+                    , "1.03.04"
+                    , "Freeware"
+                    )
+            f_my_tool("Becky! Ver.2用絵文字付きメール表示 プラグイン"
+                    , ""
+                    , "doc/BkMobileMailViewer.html"
+                    , f_date(2007,  7, 14)
+                    , f_date(2007, 11, 23)
+                    , "0.01.02"
+                    , "Freeware"
+                    )
+            f_my_tool("Becky! Ver.2用ノーツからメール送信 プラグイン"
+                    , ""
+                    , "doc/BkSendFromNotes.html"
+                    , f_date(2007,  8, 10)
+                    , f_date(2009,  6, 17)
+                    , "0.01.02"
+                    , "Freeware"
+                    )
+            f_my_tool("Becky! Ver.2用ノーツで開く プラグイン"
+                    , ""
+                    , "doc/BkNotesOpenDoc.html"
+                    , f_date(2003, 11, 30)
+                    , f_date(2007,  8, 13)
+                    , "0.02.00"
+                    , "Freeware"
+                    )
+            f_my_tool("Becky! Ver.2用Registry Export  プラグイン"
+                    , ""
+                    , "doc/BkExpReg.html"
+                    , f_date(2003,  2,  6)
+                    , f_date(2006,  6, 17)
+                    , "0.01.01"
+                    , "Freeware"
+                    )
+//            f_my_tool("SCHMSG"
+//                    , ""
+//                    , "doc/SCHMSG.html"
+//                    , f_date(2002,  7, 13)
+//                    , f_date(2002,  7, 23)
+//                    , "0.09.01"
+//                    , "Freeware"
+//                    )
+            f_my_tool("フォント一覧"
+                    , ""
+                    , "doc/FONTLIST.html"
+                    , f_date(2002,  1,  9)
+                    , f_date(2002,  7, 12)
+                    , "0.02.00"
+                    , "Freeware"
+                    )
+            f_my_tool("行電卓"
+                    , ""
+                    , "doc/LINECALC.html"
+                    , f_date(2002,  2, 14)
+                    , f_date(2005,  8, 28)
+                    , "1.01.02"
+                    , "Freeware"
+                    )
+        // --></SCRIPT>
+        <BR CLEAR="ALL">
+        こんなツールがあったら良いのにというアイデアが有りましたら、Eメールにてご一報下さい。ひょっとしたら私でも作れるかも知れませんσ(^◇^;)
+        <BR CLEAR="ALL">
+    </BLOCKQUOTE>
+<!--
+    <A NAME="lbcompo"></A>
+    Delphiコンポーネント(自作)
+    <BLOCKQUOTE>
+        <SCRIPT TYPE="text/javascript"><!--
+//            f_my_tool("HmnButton"
+//                    , ""
+//                    , "doc/HmnButton.html"
+//                    , f_date(2004, 02, 11)
+//                    , f_date(2004, 02, 11)
+//                    , "1.00.00"
+//                    , "Freeware"
+//                    )
+//            f_my_tool("HmnLabel"
+//                    , ""
+//                    , "doc/HmnLabel.html"
+//                    , f_date(2004, 02, 11)
+//                    , f_date(2006, 09, 17)
+//                    , "1.01.00"
+//                    , "Freeware"
+//                    )
+//            f_my_tool("HmnEdit"
+//                    , ""
+//                    , "doc/HmnEdit.html"
+//                    , f_date(2004, 02, 11)
+//                    , f_date(2004, 02, 11)
+//                    , "2.00.00"
+//                    , "Freeware"
+//                    )
+        // -></SCRIPT>
+    </BLOCKQUOTE>
+    <BR CLEAR="ALL">
+-->
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    &lt;いつもお世話になっている先のLINKです&gt;<BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A NAME="lblinkfw"></A>
+    私のお役立ちフリーツール紹介<BR CLEAR="ALL">
+    <BLOCKQUOTE>
+        <SCRIPT TYPE="text/javascript"><!--
+            f_link("Common SQL Environment（つみきソフトウェア作）", "img/cse_logo.png"
+                , "SQL開発環境ソフトウェアです。SQL発行が別スレッドで、「応答無し」なんてことにならないのが良いですね"
+                , "http://www.hi-ho.ne.jp/tsumiki/"
+                , "img/pt04-07.gif", "img/pt04-10.gif", "P")
+            f_link("FileZilla（Tim Kosse作）", "https://filezilla-project.org/images/logo.png"
+              , "FTPサーバーとファイルのやり取りを行います。FFFTP→RootFTPから乗り換えました"
+              , "https://filezilla-project.org/"
+              , "img/pt04-07.gif", "img/pt04-10.gif", "P")
+        // --></SCRIPT>
+    </BLOCKQUOTE>
+    <BR CLEAR="ALL">
+
+    <A NAME="lblinkdelphi"></A>
+    DELPHI<BR CLEAR="ALL">
+    <BLOCKQUOTE>
+        <SCRIPT TYPE="text/javascript"><!--
+//            f_link("Dmitry Arefiev Home Page", ""
+//                , ""
+//                , "http://www.da-soft.com/"
+//                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("Sky Engine by Delphi", "img/gosky_e3.gif"
+                , ""
+                , "http://www.geocities.co.jp/SiliconValley-SanJose/7625/index.html"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+//            f_link("Delphian World", ""
+//                , ""
+//                , "http://www2c.airnet.ne.jp/sone/"
+//                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("Delphi Acid Floor", "img/D_Acid_dalogo.gif"
+                , ""
+                , "http://www.wwlnk.com/boheme/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("ＣＯＳＭＩＣ★ＴＯＷＥＲ", "img/cosmicicon.gif"
+                , ""
+                , "http://homepage1.nifty.com/cosmic/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("The Delphi Super Page", ""
+                , ""
+                , "http://delphi.icm.edu.pl/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("Torry's Delphi Pages.", ""
+                , ""
+                , "http://www.torry.net/index.php"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+//            f_link("BORLAND Japan", ""
+//                , ""
+//                , "http://www.borland.com/jp/"
+//                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+        // --></SCRIPT>
+    </BLOCKQUOTE>
+
+    <A NAME="lblinkml"></A>
+    ML
+    <BLOCKQUOTE>
+        <SCRIPT TYPE="text/javascript"><!--
+//            f_link("USERS GROUP", "img/USERSGROUP_ugjp.gif"
+//                , ""
+//                , "http://www.users.gr.jp/"
+//                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("PCDN", "img/pcdnlink.gif"
+                , ""
+                , "http://www.int21.co.jp/pcdn/index.html"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+        // --></SCRIPT>
+    </BLOCKQUOTE>
+
+    <A NAME="lblinketc"></A>
+    ETC
+    <BLOCKQUOTE>
+        <SCRIPT TYPE="text/javascript"><!--
+            f_link("F1-Live", ""
+                , ""
+                , "http://f1.racing-live.com/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("The Official Formula 1 Website", "img/f1_logo.gif"
+                , ""
+                , "http://www.formula1.com/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("Free Art Box", "img/FreeArtBoxbana_s2.gif"
+                , ""
+                , "http://www.art-box.tv/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("ご縁カウンタ", "img/goen_btn_88.gif"
+                , ""
+                , "http://www.goencounter.com"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+            f_link("NASA", "img/hotnasa.gif"
+                , ""
+                , "http://www.nasa.gov/"
+                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+        // --></SCRIPT>
+
+        <H2>
+            <FORM method="GET" action="http://www.google.com/search" TARGET="_top">
+                <IMG SRC="img/pt04-07.gif" NAME=a1 WIDTH="9" HEIGHT="9" ALIGN="BOTTOM" BORDER="0" NATURALSIZEFLAG="3" onMouseOver="this.src='img/pt04-02.gif'" onMouseOut="this.src='img/pt04-07.gif'">
+                <A HREF="http://www.google.co.jp" TARGET="_top" onMouseOver="a1.src='img/pt04-02.gif'" onMouseOut="a1.src='img/pt04-07.gif'">
+                    <IMG SRC="img/Logo_40blk.gif" ALIGN="BOTTOM" BORDER="0" NATURALSIZEFLAG="3">
+                </A>
+                <input maxLength=256 size=50 name=q value="" onMouseOver="a1.src='img/pt04-02.gif'" onMouseOut="a1.src='img/pt04-07.gif'">
+                <input type=submit value="Google 検索" name=btnG onMouseOver="a1.src='img/pt04-02.gif'" onMouseOut="a1.src='img/pt04-07.gif'">
+            </FORM>
+            <BR CLEAR="ALL">
+        </H2>
+    </BLOCKQUOTE>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>
