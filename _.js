@@ -1,4 +1,4 @@
-function f_record(p_cols, p_val1, p_val2, p_val3) {
+﻿function f_record(p_cols, p_val1, p_val2, p_val3) {
     document.write("<TR>");
 
     wk_str = "";
