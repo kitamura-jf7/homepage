@@ -1,0 +1,284 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>SCHMSG - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    SCHMSG
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">機能説明</span></DT>
+        <UL>
+            <LI>指定テキストファイルの存在を確認し、メッセージ表示を行います
+            <LI>スケジュール機能により、指定スケジュールに合わせてメッセージ表示を行います
+            <LI>指定NotesDBの未読文書を検索し、件名をメッセージとしての表示を行います
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">操作</span></DT>
+        <UL>
+            <LI>実行はEXEファイルを開くだけです
+            <LI>タスクバーに常駐します
+            <LI>終了はタスクバーをクリックして出てくるメニューを選択します
+            <LI>スケジュール、未読検索NotesDBのメニューにて指定を行います
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">オプション</span></DT>
+        <UL>
+            <LI>監視するテキストファイル名
+            <BLOCKQUOTE>
+                このファイルの中身をメッセージとして表示します<BR>
+                パラメータが指定されなければEXEと同じフォルダのMSG.TXTを監視します
+            </BLOCKQUOTE>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作確認済み環境</DT>
+            <UL>
+                <LI>Windows2000Pro.
+                <LI>Windows98
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT>開発環境</DT>
+            <UL>
+                <LI>Windows2000Professional(ビルド2195) + SP2
+                <LI>自作機、AMD Athlon XP 1700+、256MB
+                <LI>Delphi 6 Professional + Update Pack 1
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他・既知の問題点</span></DT>
+        <UL>
+            <LI>NotesDB未読検索を使う場合はNotesインストールフォルダにPATHを通しておく必要があります
+            <LI>EXEと同じフォルダにiniファイルを作成して保存します
+            <LI>監視はタイマを使用して500ミリ秒毎に行っています
+            <LI>EXEと同じフォルダのSCHMSG.BMPまたはSCHMSG1.BMPとSCHMSG2.BMPを読み込んで表示します(起動時のみ判定)。その際は指定色(標準では黒色)部分は背景が透ける様になります
+            <LI>サンプルとして～x.BMPを添付しています
+            <LI>BMPサイズに応じてメッセージ表示領域が広がります
+
+            <DL>
+                <DT>&lt;やり残している項目&gt;</DT>
+                <UL>
+                    <LI>NotesDB登録の際にDBの存在チェックを行う様にする
+                </UL>
+            </DL>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません
+            <LI>ただし、書籍など、何らかの「物」とともに配布する場合は、サンプルとして提供してください。事後でもかまいません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたらE-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 0.9.2  2008/12/07 --</DT>
+            <UL>
+                <DT><A HREF="../downdata/SCHMSG092.EXE">
+                    <span class="sec01">DOWNLOAD (SCHMSG092.EXE)</span>
+                </A></DT>
+                <LI>内部使用ライブラリのバージョンアップに伴う再コンパイル
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.9.1  2002/07/23 --</DT>
+            <UL>
+                <LI>(BUG)Win9xで表示対象のメッセージが257バイト以上の時一般保護違反で異常終了してしまうことがあったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.9.0  2002/07/16 --</DT>
+            <UL>
+                <LI>スタートアップへの登録機能を追加した
+                <LI>(BUG)設定値が保存されない場合があったのを修正
+                <LI>Default(BMP無し)時の絵を黒の1dotのラインとした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.8.0  2002/07/12 --</DT>
+            <UL>
+                <LI>タスクトレイのアイコンクリックで指定ウインドウを前面に表示できる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.7.2  2002/03/31 --</DT>
+            <UL>
+                <LI>パスワードEncode/Decode方式変更
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.7.1  2002/03/27 --</DT>
+            <UL>
+                <LI>パスワードEncode/Decode方式変更
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.7.0  2002/03/18 --</DT>
+            <UL>
+                <LI>最前面の機能を追加。ハマたろうさん作ThroughClockがしばしば背面に隠れてしまうためこの機能を付けてみた (自動入力くんから移植)
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.8  2002/01/25 --</DT>
+            <UL>
+                <LI>Notesパスワードを簡易暗号化して保存する様にした
+                <LI>Notesパスワードの変更の際にパスワードの入力を必要とする様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.7  2002/01/09 --</DT>
+            <UL>
+                <LI>非表示ボタンの×のところがメッセージ背景透過として透過してしまうのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.6  2002/01/08 --</DT>
+            <UL>
+                <LI>NotesDBの接続時にパスワード入力用のダイアログを表示しない様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.5  2001/12/31 --</DT>
+            <UL>
+                <LI>NotesDBのオープンに失敗した時メッセージとして表示する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.4  2001/12/29 --</DT>
+            <UL>
+                <LI>NotesDB未読検索部分をDLL化した
+                <LI>NotesDB未読検索に今すぐチェック機能を追加
+                <LI>メッセージのスクロール処理をIdleイベントで行う様に変更
+                <LI>フォーム透過機能を追加(Windows2000以降)
+                <LI>メッセージ背景透過機能を追加(Windows2000以降)
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.3  2001/12/22 --</DT>
+            <UL>
+                <LI>NotesDB未読検索のチェック間隔(分)を設定できる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.2  2001/12/22 --</DT>
+            <UL>
+                <LI>スケジュールによるメッセージ表示時はNotesDB検索のタイミングでなくても同時にNotesDB検索を行う様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.1  2001/12/22 --</DT>
+            <UL>
+                <LI>メッセージのスクロール速度を設定できる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.0  2001/12/21 --</DT>
+            <UL>
+                <LI>NotesDBの未読検索機能追加
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.5.0  2001/05/24 --</DT>
+            <UL>
+                <LI>2つのBMPによる簡易アニメーションに対応。BMP名は、SCHMSG1.BMPとSCHMSG2.BMP。 SCHMSG2.BMPが存在すれば、 SCHMSG1.BMP(またはSCHMSG.BMP)との交互表示とする
+                <LI>透過色の設定は、2つのBMPに共通で1つの色の設定とする
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.4.0  2001/05/20 --</DT>
+            <UL>
+                <LI>EPSMSG Ver 0.3.0より、スケジュール機能を追加し別EXEとした
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=5'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</span>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=5&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,324 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>HmnButton - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="../_.js"></SCRIPT>
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="./_.js"></SCRIPT>
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    HmnButton
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">概要説明</span></DT>
+        <UL>
+            <LI>Delphi用ボタンコンポーネント
+            <LI>ボタン表面の色や文字の色を設定でき、ボタンに縁（フレーム）を付けることができる様にしました
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">インストール方法</span></DT>
+        <UL>
+            <LI>コンポーネントのインストールで既存もしくは新規パッケージに追加してパッケージをコンパイルして下さい
+            <LI>追加するユニットファイルは、HmnButton.pasです
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">アンインストール方法</span></DT>
+        <UL>
+            <LI>追加したパッケージからHmnButtonとHmnButton.dcrを削除してパッケージをコンパイルしなおして下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnButtonプロパティ</span></DT>
+        <DL>
+            <DT>MouseIn: Boolean;(Readonly)</DT>
+            <UL>
+                <LI>マウスカーソルがボタンの上にあるかどうか
+            </UL>
+            <DT>BevelInner: TPanelBevel default bvNone;</DT>
+            <UL>
+                <LI>内部ベベルのスタイルの設定。TPanel参照
+            </UL>
+            <DT>BevelOuter: TPanelBevel default bvNone;</DT>
+            <UL>
+                <LI>外部ベベルのスタイルの設定。TPanel参照
+            </UL>
+            <DT>BevelWidth: TBevelWidth default 1;</DT>
+            <UL>
+                <LI>ベベルの幅の設定。TPanel参照
+            </UL>
+            <DT>CapAlignH: TNHAlignment default haCenter;</DT>
+            <UL>
+                <LI>キャプションの横方向の配置
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "haLeft", "ボタンの左端に表示される", "");
+                    f_record(2, "haCenter", "ボタンの中央に表示される", "");
+                    f_record(2, "haRight", "ボタンの右端に表示される", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>CapAlignV: TNVAlignment default vaCenter;</DT>
+            <UL>
+                <LI>テキストの縦方向の配置
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "vaTop", "ボタンの上端に表示される", "");
+                    f_record(2, "vaCenter", "ボタンの中央に表示される", "");
+                    f_record(2, "vaBottom", "ボタンの下端に表示される", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>CapFixed: Boolean default True;</DT>
+            <UL>
+                <LI>フォーカスがあるときキャプションを微調整するかどうか
+            </UL>
+            <DT>CapOffsetH: integer default 0;</DT>
+            <UL>
+                <LI>キャプションの横方向の表示位置調整
+                <LI>CapAlignHがhaLeftかhaRightのとき効果が出る
+            </UL>
+            <DT>CapOffsetV: integer default 0;</DT>
+            <UL>
+                <LI>キャプションの縦方向の表示位置調整
+                <LI>CapAlignVがvaTopかvaBottomのとき効果が出る
+            </UL>
+            <DT>CaptionLines: TStrings;</DT>
+            <UL>
+                <LI>キャプション。複数行のキャプションをここでセットできる
+                <LI>ここにセットされなければ通常のCaptionが使用される
+            </UL>
+            <DT>Colors: THmnColors;</DT>
+            <UL>
+                <LI>ボタンの各種色設定。THmnColorsプロパティ参照
+            </UL>
+            <DT>Fonts: THmnFonts read FFonts write SetFonts;</DT>
+            <UL>
+                <LI>ボタンの各種フォント設定。THmnFontsプロパティ参照
+            </UL>
+            <DT>FrameHeight: integer default 0;</DT>
+            <UL>
+                <LI>上下に付ける縁（フレーム）の各高さ
+            </UL>
+            <DT>FrameWidth: integer default 0;</DT>
+            <UL>
+                <LI>左右に付ける縁（フレーム）の各幅
+            </UL>
+            <DT>ShowFocus: Boolean default True;</DT>
+            <UL>
+                <LI>ボタンにフォーカスがあるときにフォーカス線を表示するかどうか
+            </UL>
+            <DT>Style: TButtonStyle default bsStd;</DT>
+            <UL>
+                <LI>ボタンのスタイル
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "bsStd", "標準", "");
+                    f_record(2, "bsIELike", "IEの様なボタン", "");
+                    f_record(2, "bsNone", "キャプションのみで何もないかの様なボタン", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>TestShow: THBTestShow default tsNormal;</DT>
+            <UL>
+                <LI>デザイン時の表示モード
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "tsNormal", "通常状態で表示", "");
+                    f_record(2, "tsMouseIn", "ボタンの上にマウスカーソルがあるときの状態で表示", "");
+                    f_record(2, "tsFocusIn", "ボタンにフォーカスがあるときの状態で表示", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnButtonイベント</span></DT>
+        <DL>
+            <DT>OnMouseEnter;</DT>
+            <UL>
+                <LI>ボタンの上にマウスカーソルが入ってきたとき
+            </UL>
+            <DT>OnMouseLeave;</DT>
+            <UL>
+                <LI>ボタンの上からマウスカーソルが出ていったとき
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnColorsプロパティ</span></DT>
+        <DL>
+            <DT>Color: TColor default clBtnFace;</DT>
+            <UL>
+                <LI>ボタンの表面の色
+            </UL>
+            <DT>MouseInColor: TColor default clBtnFace;</DT>
+            <UL>
+                <LI>ボタンの上にマウスカーソルがあるときの表面の色
+            </UL>
+            <DT>EdgeHighlight: TColor default clBtnHighlight;</DT>
+            <UL>
+                <LI>ボタンエッジの明るい方の色
+            </UL>
+            <DT>EdgeShadow: TColor default clBtnShadow;</DT>
+            <UL>
+                <LI>ボタンエッジの暗い方の色
+            </UL>
+            <DT>FrameColor: TColor default clBtnFace;</DT>
+            <UL>
+                <LI>ボタンフレームの色
+            </UL>
+            <DT>FocusFrameColor: TColor default clWindowFrame;</DT>
+            <UL>
+                <LI>ボタンにフォーカスがあるときのフレームの色
+            </UL>
+            <DT>MouseInFrameColor: TColor default clWindowFrame;</DT>
+            <UL>
+                <LI>ボタンの上にマウスカーソルがあるときのフレームの色
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnFontsプロパティ</span></DT>
+        <DL>
+            <DT>Font: TFont default Parent.Font;</DT>
+            <UL>
+                <LI>キャプションのフォント（色）
+            </UL>
+            <DT>FocusFont: TFont default Parent.Font;</DT>
+            <UL>
+                <LI>ボタンにフォーカスがあるときのキャプションのフォント（色）
+            </UL>
+            <DT>MouseInFont: TFont default Parent.Font;</DT>
+            <UL>
+                <LI>ボタンの上にマウスカーソルがあるときのキャプションのフォント（色）
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作環境：Borland Delphi 6、7、8(VCL)</DT>
+            <DT>※ただし、D8対応については暫定的な対応です</DT>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他・既知の問題点</span></DT>
+        <UL>
+            <LI>縁（フレーム）部分をクリックされた際にボタンのクリックは発生しない様にしていますが、その関係で、ボタンを押し下げたままボタンの外にマウスカーソルを逃がす際にフレームを出るまで押し下がったままになってしまう
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたらE-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 1.00.00  2004/02/11 --</DT>
+            <UL>
+                <LI>とりあえずひっそりと公開開始
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ダウンロード</span></DT>
+        <DL>
+            <DT><A HREF="http://noiybq.bay.livefilestore.com/y1pP9hx2jecCNkcr9KesIn55ne_i-2gzLW0ZTdzKpoN2kXvkoiM65dWkecX_h4hwKnYZiauOydIZBU/HMNBUTTON.LZH?download">
+                <span class="sec01">DOWNLOAD from SkyDrive (HMNBUTTON.LZH)</span>
+            </A></DT>
+            <BR CLEAR="ALL">
+
+            <DT><A HREF="../downdata/TESTHMNBUTTON.LZH">
+                <span class="sec01">テストプロジェクトとEXE  DOWNLOAD (TESTHMNBUTTON.LZH)</span>
+            </A></DT>
+        </DL>
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=12'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</span>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=12&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

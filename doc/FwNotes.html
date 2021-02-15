@@ -1,0 +1,1610 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>ノーツメール転送(Notes起動不要) - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="../_.js"> </SCRIPT>
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="./_.js"> </SCRIPT>
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    ノーツメール転送(Notes起動不要)
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">機能説明</span></DT>
+        <UL>
+            <LI>ノーツの未読メールを指定のEメールIDまたはファイルに転送しノーツメールを既読にします。
+            <LI>社内でNotesを使っているため気に入っているメーラが使えないという環境で気に入っているメーラでNotesメールを見る・管理することができます。
+            <LI>ノーツメールはNotesメールボックスに残りますので各種リンクが添付されている文書でNotesメールボックスからメールが無くなってしまって困る事もありません。また、転送される前にNotesでメールを参照した場合でも未読に戻せば何度でも転送することができます。
+            <LI>eml形式ファイルのファイル名を指定して実行することで、ノーツからメール送信させることができます。拙作の
+                <BLOCKQUOTE>
+                    Becky! Ver.2用ノーツからメール送信 プラグイン
+                </BLOCKQUOTE>
+                と併用することで、Beckyで普通に送信を行うことでノーツからメールを送信することができる様になります。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">環境設定</span></DT>
+        <DL>
+            <IMG SRC="FwNotes_CONFIG.png" ALIGN="BOTTOM" BORDER="0"><BR>
+            <DT>標準のメールボックスを使用</DT>
+            <DL>
+                <DT>レプリカを取っておいた過去メールを移行したい場合にチェックを外して対象のレプリカのサーバーとファイル名を指定します。対象ファイルがローカルの場合はサーバーにはlocalと指定するかBLANKのままとします。</DT>
+                <DT>また、これにより別の副作用が考えられる様になりましたメールDB以外のDBを指定することで、Subject、Bodyなど共通的な項目を持っていれば指定した宛先に送付することが可能になります。となると、当然複数DB指定したいとのご要望が出てくるとは思いますが、今後実装していきたいと思います。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>ファイル保管</DT>
+            <DL>
+                <DT>形式</DT>
+                <DL>
+                    <DT>eml形式</DT>
+                    <DL>
+                        <DT>1メールを1ファイルで作成</DT>
+                    </DL>
+                    <DT>mbox形式</DT>
+                    <DL>
+                        <DT>複数メールを1ファイルで作成。From ～で始まり空白行を挟んで次のFrom ～までが1つのメールになります。</DT>
+                    </DL>
+                    <DT>カスタム</DT>
+                    <DL>
+                        <DT>複数メールを1ファイルで作成。区切り文字列までが1つのメールになります。</DT>
+                    </DL>
+                </DL>
+                <DT>保管先に指定の拡張子でファイルを作成します。作成されるファイル名は、m$~～で始まるユニークなファイル名になっています。ファイル名では内容がわからないのですが、件名としてしまうと同じ件名の場合に問題があるので現在はこうしています。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>SMTPサーバへの送信</DT>
+            <DL>
+                <DT>指定されているSMTPサーバを使ってRCPT TOで指定されたメールアドレスに送信します。</DT>
+                <DT>RCPT TOには複数のアドレスが指定でき、いずれのアドレスに対しても同じコピーが配信されます。</DT>
+                <DT>タイトルのみ送付先に指定したアドレスへはタイトルと日付のみを本文にした内容を送信します。携帯電話で要件のみ受信したい等に使えるのではと思います。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>POP before SMTP</DT>
+            <DL>
+                <DT>SMTP送信の前にPOPサーバに対してユーザIDとパスワードでPOP認証を行います。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>SMTP AUTH</DT>
+            <DL>
+                <DT>SMTP送信の際にSMTPサーバに対してユーザIDとパスワードで認証を行います。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>Notes.exe導入フォルダ</DT>
+            <DL>
+                <DT>Notesの導入フォルダでNotes.exeの存在しているフォルダを指定しますここで指定したフォルダでNotes.exeを起動できる環境を使うことになります。1台のパソコンに複数ノーツ環境を作ることも可能だと思います。ただし、あくまでも Notes.exeが正常に起動する状態である必要があります。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>Notesパスワード</DT>
+            <DL>
+                <DT>ノーツ認証の際のパスワードです。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>本文折返し桁位置</DT>
+            <DL>
+                <DT>本文転送時に指定桁位置で折り返して転送します。空白時は折り返ししません。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>本文のみ転送する</DT>
+            <DL>
+                <DT>元メールの本文のみを転送する場合にチェックします。チェックすると元メールの添付ファイルは転送されなくなります。本文のみ転送するかどうかに関わらず、本文をリッチテキストで添付するのチェックが付いている場合は、本文のリッチテキストが添付されます。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>本文をHTMLで添付する</DT>
+            <DL>
+                <DT>BodyフィールドをHTMLに変換して添付します。表・貼り付けられている画像・リンクも含めることが可能です。ただし、これでもすべて正しく変換される訳ではありません。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>本文をリッチテキストで添付する</DT>
+            <DL>
+                <DT>本文を変換すると表などが正しく変換されません。これを補うために本文のリッチテキストを添付することが可能です。ただし、これでもすべて正しく変換される訳ではありません。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>本文のJIS Encodeを行う</DT>
+            <DL>
+                <DT>iso-2022-jpのエンコード指定時、本文をJIS Encodeします。チェックを外すとS-JISテキストを使用します。よって、半角カナ等もそのままとなります。</DT>
+                <DT>なお、Encodeの際には半角カナ濁音については事前に全角カナに変換してからEncodeを行います。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>ヘッダのMIME Encodeを行う</DT>
+            <DL>
+                <DT>ヘッダ部をMIME Encodeします。チェックを外すとS-JISとなります。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>ヘッダ部アドレスを1アドレス1行に編集する</DT>
+            <DL>
+                <DT>ヘッダ部のアドレスを1アドレスを1行として作成する場合に使用します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>ヘッダ部件名を1行76桁に編集する</DT>
+            <DL>
+                <DT>ヘッダ部の件名を1行76桁前後となる様に改行して作成する場合に使用します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>受信確認を返信する</DT>
+            <DL>
+                <DT>受信確認付きのメールに受信確認レポートを返信する場合に使用します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>Disposition-Notification-Toヘッダを付加する</DT>
+            <DL>
+                <DT>受信確認付きのメールのヘッダにDisposition-Notification-Toをセットします。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>Resent-XXXヘッダを付加する</DT>
+            <DL>
+                <DT>メールヘッダにResent-From、Resent-To、Resent-Dateを付けて転送します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>添付ファイルの扱いのエラーは無視する</DT>
+            <DL>
+                <DT>添付ファイルを処理する際に発生したエラーは無視して転送を継続します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>ファイル名リストを付加する</DT>
+            <DL>
+                <DT>添付ファイル名の一覧を付加します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>転送済み文書を記憶して再転送しない</DT>
+            <DL>
+                <DT>転送処理された文書IDを記憶し、再度未読文書で同じIDが処理されようとした際に転送しない様にします。R4で未読→既読がうまくいかない場合に使用してみてください。</DT>
+                <DT>記憶したIDは転送から５日経過したら順次消していきます。</DT>
+                <DT>転送から５日以内にノーツから（故意に未読に戻して）再転送したい場合は、環境設定画面でチェックを外してノーツメール転送を起動してください。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>転送済み文書を既読にする</DT>
+            <DL>
+                <DT>すべての未読文書の転送後、未読文書を既読にします。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>転送メールのエンコード</DT>
+            <DL>
+                <DT>utf-8またはかiso-2022-jpでエンコード方法を指定します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>公開アドレス帳のインターネットアドレスを参照する</DT>
+            <DL>
+                <DT>ノーツアドレスのE-MAILアドレスへの変換の際に個人アドレス帳による変換で変換できなかった際に公開アドレス帳を参照しインターネットアドレスの取得を行います。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>アドレス帳サーバー</DT>
+            <DL>
+                <DT>公開アドレス帳を探すサーバー名。空白ならメールボックスと同じサーバーとなります。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>公開アドレス帳対象ファイル名</DT>
+            <DL>
+                <DT>まだ一度も実行していない時は空になっていますが、公開アドレス帳を参照する処理が一度でも行われると公開アドレス帳として登録されているファイルが一覧で表示されてきます。対象欄のチェックを外すと公開アドレス帳のインターネットアドレス検索の対象から外れます。公開アドレス帳が複数あって速度が遅いときにチェックを外して改善できるかもしれません。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>アドレス変換でアドレス帳から名称を取得する</DT>
+            <DL>
+                <DT>個人アドレス帳または公開アドレス帳からメールアドレスを検索し、KanjiNameフィールドもしくはFirstName＋LastNameをメール名称として取得します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>PPA変換ルーチン</DT>
+            <DL>
+                <DT>ノーツアドレスのE-MAILアドレスへの変換、Message-IDの変換で個人アドレス帳・公開アドレス帳により変換できなかった際にPPA変換ルーチンに指定したファイルのロジックによる変換を行います。'LocalDomain'については、ここで変換する様にすることでレスポンスがよくなります。</DT>
+                <DT>編集ボタンで開くと変換ロジックを確認することができます。メモ帳等で編集して保存して下さい。変換テストを押すと、変換前の内容を編集したロジックに基づき変換して変換後に表示します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>送信メールに署名</DT>
+            <DL>
+                <DT>送信するメッセージに電子署名を追加する。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>送信メールフォント</DT>
+            <DL>
+                <DT>送信するメッセージに使うフォント名。省略時はフォント指定しない。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>送信メールフォントサイズ</DT>
+            <DL>
+                <DT>送信するメッセージに使うフォントサイズ。省略時は10ポイント。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>送信メールを保存する</DT>
+            <DL>
+                <DT>送信したメッセージを送信ビューに保存します。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>送信メールを既読にする</DT>
+            <DL>
+                <DT>送信したメッセージを既読にします。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>$Mailer</DT>
+            <DL>
+                <DT>送信メールに付ける$Mailerプロパティの内容。空白時は、ノーツメール転送のバージョンがセットされます。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>デバッグログの作成</DT>
+            <DL>
+                <DT>通常はチェックを外しておきます。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>内部アドレス変換テーブルクリア</DT>
+            <DL>
+                <DT>アドレス変換の高速化のため、一度公開アドレス帳などから変換取得した情報を内部テーブルに保持しています。その内容を一旦クリアしたい場合に使用します。インターネットアドレスが変更になった、PPA変換ルールを間違ったなどで間違った変換がされてしまう場合、一旦クリアしてみて下さい。</DT>
+            </DL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">操作</span></DT>
+        <UL>
+            <LI>実行はFWNOTES.exeファイルを開くだけです。初回起動時に環境設定画面が自動的に表示されるので必要な設定を行います。
+            <LI>1回の未読スキャンを終了すると処理を終了します。タスクマネージャとの併用で一定間隔毎に継続して処理させることが可能です。ただし、試用中にバックグランドで実行してしまうとメッセージ表示画面で停止してしまいますのでご注意下さい。
+            <LI>設定内容の変更は、一緒に添付しているFWNOTESCONFIG.exeで行います。
+            <LI>設定内容はEXEファイルと同じフォルダにiniファイルを作成して保存しています。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">オプション</span></DT>
+        <UL>
+            <LI>FWNOTES.exe　　本体。以下の引数が指定可能です。
+            <UL>
+                <LI>引数1
+                <UL>
+                    <DT>iniファイル名</DT>
+                    <BLOCKQUOTE>
+                        ノーツに参照させるNOTES.iniファイル名
+                    </BLOCKQUOTE>
+                    <DT>または、</DT>
+                    <DT>emlファイル名</DT>
+                    <BLOCKQUOTE>
+                        ノーツから送信させるemlデータファイル名
+                    </BLOCKQUOTE>
+                </UL>
+                <DT>または、<BR></DT>
+                <LI>引数1　　文書ID
+                <BLOCKQUOTE>
+                    ノーツメール転送により転送されたメールであれば、メールヘッダX-FwNotes-UniversalID:の値
+                </BLOCKQUOTE>
+                <LI>引数2　　ファイル名
+                <BLOCKQUOTE>
+                    データベースファイル名。同X-FwNotes-DatabaseFileName:の値
+                </BLOCKQUOTE>
+                <LI>引数3　　サーバ名
+                <BLOCKQUOTE>
+                    データサーバ名。同X-FwNotes-DatabaseServer:の値
+                </BLOCKQUOTE>
+            </UL>
+            <LI>FWNOTESCONFIG.exe　　環境設定
+            <UL>
+                <LI>なし
+            </UL>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作(報告)環境</DT>
+            <UL>
+                <LI>Windows 10 Pro.
+                <LI>Windows 8.1 Pro.
+                <LI>Windows 7 Pro.
+                <LI>Windows Server 2003 SP1(評価ビルド3790)
+                <LI>Windows XP Pro.
+                <LI>Windows 2000 Pro.
+                <LI>Lotus Notes R9
+                <LI>Lotus Notes R8.5
+                <LI>Lotus Notes R7.0
+                <LI>Lotus Notes R6（送信機能未確認）
+                <LI>Lotus Notes R5（送信機能未確認）
+                <LI>Lotus Notes R4.7、R4.6（送信機能未確認）
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT>開発環境</DT>
+            <UL>
+                <LI>Windows 10.1 Pro.
+                <LI>Delphi 6 Professional + Update Pack 2
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ノーツアドレスのE-MAILアドレスへの変換について</span></DT>
+        <UL>
+            <LI>対象メールのアドレス(FROM,TO,CC,BCC(BCCは自分が発信した場合のみですが))で個人アドレス帳のフルネーム(FullName)を検索し、一致する文書があればコメント欄(Comment)を参照してE-MAILでのアドレスを取得します。文書が無いかE-MAILアドレスが未登録の場合は、公開アドレス帳のフルネーム(FullName)を検索しインターネットアドレス(InternetAddress)を取得します。公開アドレス帳にも文書が無いかインターネットアドレスが未登録の場合はPPA変換ルーチンによる変換を行います。
+            <LI>個人アドレス帳のコメント欄は次の記述とします。複数行書かれていれば先頭の内容に変換されます。
+            <BLOCKQUOTE>
+                E-MAIL=fwnotes@jf7.so-net.ne.jp
+            </BLOCKQUOTE>
+            <LI>先に個人アドレス帳を検索するのは個人アドレス帳の方がレスポンスが良いからです。レスポンスを気にしないのであれば個人アドレス帳への登録は不要です。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">Message-IDの変換について</span></DT>
+        <UL>
+            <LI>ノーツメールの文書が残っていればその文書のプロパティの$MessageIDより取得します。返信メールの場合は親文書を探します。取得した$MessageIDで内容が @LocalDomainの部分は個人アドレス帳をLocalDomainで検索し、コメント欄より DOMAINを取得します。検索して見つからなければ$MessageIDの内容に対してPPA変換ルーチンによる変換を行います。
+            <LI>$MessageIDより取得できない場合は、文書IDに@LocalDomainを付加して同様の変換を行う様にします。
+
+            <LI>個人アドレス帳のコメント欄は次の記述とします。複数行書かれていれば先頭の内容に変換されます。
+            <BLOCKQUOTE>
+                DOMAIN=jf7.so-net.ne.jp<BR>
+                ※@は不要です
+            </BLOCKQUOTE>
+
+            <LI>In-Reply-To:、References:については、Referencesフィールドが有ればその内容で作成します。
+            <BLOCKQUOTE>
+                In-Reply-To: [Referencesの右側の値]<BR>
+                References: [References]
+            </BLOCKQUOTE>
+            <LI>Referencesフィールドが無ければ、$REFフィールドより加工して作成します。
+            <BLOCKQUOTE>
+                In-Reply-To: &lt;OFxxxxxxxx.xxxxxxxx-ONxxxxxxxx.xxxxxxxx@[DOMAIN]&gt;<BR>
+                References: &lt;OFxxxxxxxx.xxxxxxxx-ONxxxxxxxx.xxxxxxxx@[DOMAIN]&gt;<BR>
+                ※[DOMAIN]は、個人アドレス帳またはPPA変換ルーチンにより取得します。
+            </BLOCKQUOTE>
+        </UL>
+        <BR CLEAR="ALL">
+        <UL>
+            <LI>ただし、これらの変換は結果的には無意味な場合が多いです。やはり、ノーツ自身がIn-Reply-To:、References:を正しく付けてくれなければダメですね。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">PPA変換ルーチンについて</span></DT>
+        <UL>
+            <LI>予め次の変数を割り当てしています。
+            <BLOCKQUOTE>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="40%"></TD><TD WIDTH="60%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "NotesAddress", "変換前のアドレス(ノーツ表現)");
+                    f_record(2, "result", "〃");
+</SCRIPT>
+                </TABLE>
+            </BLOCKQUOTE>
+
+            <LI>変数resultに変換結果をセットすることでPPA変換ルーチンでの変換結果を反映します。（サンプルでは一番下）
+            <LI>サンプル中で使用している次の関数は標準PPAに無い独自関数です。
+            <BLOCKQUOTE>
+                関数：StringReplace<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "S", "文字列");
+                    f_record(3, "引数2", "OldPattern", "文字列");
+                    f_record(3, "引数3", "NewPattern", "文字列");
+                    f_record(3, "引数4", "Flags", "rfReplaceAllもしくはrfNone");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">文字列S内の文字列OldPatternを文字列NewPatternに置換し戻します。FlagsにrfReplaceAllを指定した時は、すべての文字列OldPatternを一括置換します。rfNoneを指定した時は最初の１つのみ置換します。</TD>
+                    </TR>
+                </TABLE>
+                関数：GetEMailAddress<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "OriginalAddress", "文字列");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">文字列OriginalAddressで公開アドレス帳を参照し、InternetAddressを取得する。取得できない場合は、OriginalAddressを返す<BR>※変換テスト時は機能しません。</TD>
+                    </TR>
+                </TABLE>
+            </BLOCKQUOTE>
+            <LI>その他、PPAの文法等については、同梱のPPA.hlpを参照下さい。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">PPA後処理ルーチンについて</span></DT>
+        <UL>
+            <LI>１文書の転送都度呼び出されるルーチンで、該当文書に対して行いたい処理を指定できます。
+            <LI>次の関数は標準PPAに無い独自関数です。
+            <BLOCKQUOTE>
+                関数：GetItem<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "ItemName", "文字列");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">該当文書のプロパティItemNameの値を取得する。</TD>
+                    </TR>
+                </TABLE>
+                関数：SetItem<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "ItemName", "文字列");
+                    f_record(3, "引数2", "Value", "文字列");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">該当文書のプロパティItemNameの値をValueに設定する。成功した場合は'OK'を返す。失敗した場合はエラー内容を返す。</TD>
+                    </TR>
+                </TABLE>
+                関数：DeleteDoc<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">該当文書を削除する。成功した場合は'OK'を返す。失敗した場合はエラー内容を返す。</TD>
+                    </TR>
+                </TABLE>
+                関数：CopyDoc<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "Server", "文字列");
+                    f_record(3, "引数2", "Filename", "文字列");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">該当文書をデータベースServer/Filenameにコピーする。成功した場合は'OK'を返す。失敗した場合はエラー内容を返す。</TD>
+                    </TR>
+                </TABLE>
+                関数：MoveDoc<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "Server", "文字列");
+                    f_record(3, "引数2", "Filename", "文字列");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">該当文書をデータベースServer/Filenameに移動する。成功した場合は'OK'を返す。失敗した場合はエラー内容を返す。</TD>
+                    </TR>
+                </TABLE>
+                関数：PutLog<BR>
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="20%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "引数1", "Message1", "文字列");
+                    f_record(3, "引数2", "Message2", "文字列");
+                    f_record(3, "戻り型", "string(文字列)", " ");
+</SCRIPT>
+                    <TR>
+                    <TD>仕様</TD><TD COLSPAN="2">Message1／Message2の内容でログを出力する。戻り値は'OK'を返す。</TD>
+                    </TR>
+                </TABLE>
+            </BLOCKQUOTE>
+            <LI>その他、PPAの文法等については、同梱のPPA.hlpを参照下さい。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">送信</span></DT>
+        <UL>
+            <LI>引数でemlファイル名を指定して実行することで、ノーツからメール送信させることができます。
+            <LI>添付ファイルを付けることもできますが、添付ファイルはアイコン無しでの添付となります。
+            <LI>本文中にファイル名を &gt;&lt; で囲った行を記述することで、添付ファイルの貼り付け位置を指定することが可能です。
+            <BLOCKQUOTE>
+                例）<BR>
+                いつもお世話になっております。<BR>
+                添付ファイルは <span class="bold01">&gt;サンプル.xls&lt;</span> になります。<BR>
+                よろしくお願いします。
+            </BLOCKQUOTE>
+            <LI>本文中に添付ファイル名の記述が無い場合は、本文の一番後ろが貼り付け位置となります。
+            <LI>送信メールをノーツメール転送で転送する際に本文をリッチテキストで添付した場合に、リッチテキスト文書内でうまく改行がされていないという問題点があります。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他・既知の問題点</span></DT>
+        <UL>
+            <LI>HTMLの添付の際の表は罫線が必ず有りとして作成されます。
+            <LI>本文のサイズが大きくBodyフィールドが複数に分割されている場合に、Body.RTFが複数添付ファイルに分割されて作成される。また、分割される場所により不正なリッチテキストが作成される事が有る。今のところ対処できず。
+            <LI>エラーメッセージのみのメールが作成される事があります。今までにも次の様なメッセージが発生しています。いずれも詳しく原因はわかっていませんがノーツ上でメールボックスを開いて「<span class="bold01">すべての文書を既読に</span>」を実行すると現象が解消される様です。
+            <BLOCKQUOTE>
+                Error $0225:文書が削除されました<BR>
+                Error $0227:Invalid or nonexistent document<BR>
+                Error $0227:文書が無効またはありません<BR>
+            </BLOCKQUOTE>
+            <LI>メールアドレスの有効性等何もチェックをしていませんので、間違って指定した際にどんな挙動になるかは不明です。
+            <LI>個人アドレス帳検索の際に検索する文字内容によってはError$0501:式のエラーが発生する可能性があります。もし、エラーが発生したら発生した際のアドレスを教えていただければエラーにならない様に対応可能ですので、支障の無い範囲で情報を提供いただけると助かります。
+            <LI>パスワード認証の際、Notes.iniが一時的に書き換えられます。
+            <LI>Becky2からの受信確認メールの転送でエラーになる。
+            <LI>POP before SMTPのパスワードは20文字までに限定しています。不都合あればお知らせ下さい。
+            <LI>アンインストールはアプリケーションの追加と削除よりノーツメール転送を削除し、インストールしたフォルダを削除します。次のレジストリを使用しています。
+            <BLOCKQUOTE>
+                HKEY_CLASSES_ROOT\.FwNEml<BR>
+                HKEY_CLASSES_ROOT\FwNotesSendEml
+            </BLOCKQUOTE>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ユーザ登録について</span></DT>
+        <UL>
+            <LI>ユーザ登録に先立って、試用版としてご利用していただくことが出来ます。ユーザ登録がされるまでのご利用(起動)時は試用版である旨のメッセージが表示されます。OKボタンを押して継続して下さい。
+            <LI>ユーザ登録していただく為には以下の条件を満たしている必要があります。事前にご確認下さい。
+            <BLOCKQUOTE>
+                1)  Windowsの操作及び、メールの基本についての前提知識があること
+                <BLOCKQUOTE>
+                    特に、環境設定する際の、SMTPサーバ/POPサーバの名前などは、プロバイダーによって違いますので、それらについての知識及び資料をお持ちであることが前提となります。
+                </BLOCKQUOTE>
+                2)  ノーツについての前提知識があること
+                <BLOCKQUOTE>
+                    動作させる環境としてノーツが稼働する事が前提になっております。また、稼働しているノーツのユーザが対象になりますので予めノーツが正しく稼働し、メールが受け取れていることをご確認下さい。
+                </BLOCKQUOTE>
+                3)  ノーツメール転送があなたの環境で確実に動作することが確認されていること
+                <BLOCKQUOTE>
+                    試用していただいて問題の無いことをご確認下さい。
+                </BLOCKQUOTE>
+            </BLOCKQUOTE>
+            <LI>ユーザ登録を行うには、次の情報を記載してE-MAILで送付下さい。
+            <BLOCKQUOTE>
+                依頼先メールアドレス：fwnotes@jf7.so-net.ne.jp<BR>
+                メールタイトル：ノーツメール転送ユーザ登録希望<BR>
+                本文に、
+                <BLOCKQUOTE>
+                    返信先メールアドレス：(メールアドレス)<BR>
+                    使用者ID：(試用確認の画面に表示されています)<BR>
+                </BLOCKQUOTE>
+                試用確認の画面にて仮登録依頼ボタンを押下すればメーラが起動すると思いますので、返信先メールアドレスを入力して送信して下さい。
+            </BLOCKQUOTE>
+            <LI>折り返し仮ライセンス番号と登録方法をご連絡させていただきます。引き続き、仮ライセンス番号にて約1ヶ月ご利用いただきご確認下さい。
+            <LI>ご確認いただき問題無いようでしたら、再度E-MAILにて正式申し込みを行って下さい。お支払い方法等の必要事項をご連絡させていただきます。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>使用するノーツメールボックス(レプリカID)単位でのライセンスが必要です。同一メールボックスで使用する限りにおいて、複数台のパソコンへのインストールを許可します。
+            <LI>バージョン1.xxのライセンス料は、<span class="bold01">1ライセンス当たり1000円(税込み総額)</span>になります。
+            <LI>バージョン1.xxを使い続ける限り有効期限はありません。ただしノーツ側のバージョンアップにより稼働できなくなった場合にはその限りではありません。
+            <LI>お支払い手続き後のキャンセルや返品には応じられません。お支払いの前に、十分ご試用いただき、納得のいく場合にのみご利用くださいますよう、お願いいたします。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します。
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>ご要望・バグ等については、E-Mailにて&nbsp;
+                <A HREF="mailto:fwnotes@jf7.so-net.ne.jp">
+                    fwnotes@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお問い合わせ下さい。
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 1.55.45  2020/05/08 -- <span class="highlight">(当サイトでのみ公開中)</span></DT>
+            <UL>
+                <DT><A HREF="../downdata/FWN15545.exe">
+                    <span class="sec01">DOWNLOAD (FWN15545.exe)</span>
+                </A></DT>
+                <LI>受信したメールのMIMEパートに不正な構成があるとき、添付ファイルのパートを付けてもメーラに解釈されないことがあるため、先に添付ファイルのパートを付けるよう修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.44b  2020/04/13 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>インストーラでOSバージョン判定をしないようにした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.44  2019/07/18 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>ノーツから取得できるMIMEデータがUTF-8/quoted-printableの場合に=10で始まるS-JIS文字コードが返されメーラで文字化けしていたのを、S-JIS→UTF-8にリエンコードするように修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.43  2019/07/15 -- <span class="highlight">(VECTOR公開中)</span></DT>
+            <UL>
+                <DT><A HREF="http://www.vector.co.jp/soft/win95/net/se232086.html" TARGET="_top">
+                    <span class="sec01">DOWNLOAD (VECTORにJump)</span>
+                </A></DT>
+                <LI>添付ファイルの処理時にI/Oエラーが発生することがあったのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.42  2019/07/07 --</DT>
+            <UL>
+                <LI>リッチテキストのImageフォーマットが想定外の時、バイナリデータとして保存するよう修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.41  2019/06/08 --</DT>
+            <UL>
+                <LI>メール転送時のMIMEエンコードでダブルコーテーションでの空文字囲い時にエラーになっていたのを修正。
+                <LI>宛先メールアドレスの解析でダブルコーテーションで囲われた中にカンマが含まれると分割されてしまっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.40  2017/05/22 --</DT>
+            <UL>
+                <LI>ノーツを使った送信でquoted-printableエンコードされたメールが上手く扱えていなかったのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.39  2017/02/01 --</DT>
+            <UL>
+                <LI>本文が空のメールが転送できなくなっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.55.38  2016/11/13 --</DT>
+            <UL>
+                <LI>ノーツを使った送信でutf-8エンコードされたメールが上手く扱えていなかったのを修正。
+                <LI>転送メールをutf-8エンコードできる設定を追加した。
+                <LI>MIMEデータに本文が含まれない場合は、そのままを転送データとせずBodyメッセージを転送データとするように変更。
+                <LI>ファイル名リストが付かなくなっていたのを修正。
+                <LI>HTML添付をしないときのノーツリンクへのショートカットが付かなくなっていたのを修正。
+                <LI>HTML添付でS-JISに変換できない文字コードが?になってしまっていたのを修正。
+                <LI>MIMEデータを転送データとするとき、バイナリパートを除外していたのを、除外しないように修正。
+                <LI>ノーツを使った送信で対象ファイルを誤ってutf-8と判定することがあったのを、判定精度を改善した。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.54.38  2015/06/30 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>ノーツを使った送信で本文に使用するフォント名とサイズを指定できる様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.53.38  2014/12/20 --</DT>
+            <UL>
+                <LI>ノーツを使った送信でshift_jisとutf-8エンコードされたメールを扱えるように変更。ただし、デコードされた本文(BODY)はS-JISでの作成となる。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.38  2014/12/14 --</DT>
+            <UL>
+                <LI>HTMLパートをJISエンコードするように修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.37  2011/08/18 -- (VECTOR公開)</DT>
+            <UL>
+                <LI>Ver 1.52.36の修正で本文に不要なContent-Type:が付いてしまっていたのを修正。
+                <LI>Ver 1.52.36の修正で日付範囲がnullの時にエラーとなってしまっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.36  2011/08/13 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>Ver 1.50.26でMIME解析したBodyメッセージを添付する様にしたがUTF-8なMIMEデータに対応できないためMIMEデータそのままを転送データとするように修正。
+                <LI>転送元メールのPostedDateが０時台のとき、時刻が0:00:00になってしまっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.35  2011/07/30 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>MIMEパート形式のBodyで半角空白の連続する部分にハイフンが返されるため、MIMEパート形式のBodyの場合はMIMEデコード内容を本文として使用するように修正。
+                <LI>SIG_CD_NESTEDTABLEBEGINでSIG_CD_TABLEBEGINされていない対応で不十分なところがあったのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.34  2011/03/23 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>直前の修正でメモリがうまく解放できていなかったのを修正。
+                <LI>MIMEパート形式のBodyで半角空白の連続する部分にハイフンが返されるため、HTMLパート作成時にハイフンを空白に置き換える様に修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.33  2011/03/17 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>SIG_CD_NESTEDTABLEBEGINでSIG_CD_TABLEBEGINされていないのを無視してAssertしない様に修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.32  2011/03/13 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>SIG_CD_IMAGEHEADERでSegCountがゼロの場合にPremature end of dataのエラーになっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.31  2010/12/23 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>HOTSPOT内にある添付ファイルが添付できていなかったのを修正。（HOTSPOTREC_TYPE_XXXに値10が発生!?）
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.30  2010/11/28 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>HTMLパートへの貼り付け画像の扱いでモノクロBMPでエラーとなっていたのを修正。
+                <LI>添付ファイルがあるときと無いときでMIMEヘッダの付け方を変更。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.29  2010/05/30 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>SIG_CD_NESTEDTABLEBEGINの無いSIG_CD_NESTEDTABLEENDを無視してAssertしない様に修正。
+                <LI>HTMLパートでHOTSPOT中でもテキスト・イメージを書き出す様に修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.52.28  2010/05/22 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>MIMEパートで届いているメールではMIMEパートそのままを本文をとしBodyフィールド内容は書き出していなかったのを、Bodyフィールドの行頭空白をMIMEパートの内容で復元して本文とする様に変更。
+                    <BR>※BodyフィールドがTYPE_MIME_PARTでmimeパート内容がうまく取得できないことがあることへの対応。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.51.28  2010/05/15 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>HTMLパートを添付しない時、文書リンクがあれば本文に一覧を書き出す様にした。
+                <LI>HTMLパートとリッチテキストのどちらも添付しない時に、不要なcontent-Type:のメッセージが本文に書き出されていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.50.27  2010/04/29 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>R8以前の形式の画像データ取得でエラーとなっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.50.26  2010/04/28 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>MIMEパート形式のBodyをmessage/rfc822で添付していたのをやめてmultipart/mixedとしてMIME解析したBodyメッセージのみを添付する様に修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.50.25  2010/04/21 -- <span class="highlight">(VECTORにて公開中)</span></DT>
+            <UL>
+                <DT><A HREF="http://www.vector.co.jp/soft/win95/net/se232086.html" TARGET="_top">
+                    <span class="sec01">DOWNLOAD (VECTORにJump)</span>
+                </A></DT>
+                <LI>MIMEパート形式のBodyが不正な形式で届いている時に添付ファイルが不正なBody内容となってしまうことがあったのをできるだけ添付ファイルとして扱う様に対応。
+                <LI>HTMLパートへの貼り付け画像の扱いでGIF・JPEG・BMP形式に対応。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.49.25  2010/02/27 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>文書ID=0の文書が対象に存在する時、エラーとなっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.49.24  2009/11/10 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>BodyフィールドがTYPE_COMPOSITEでない時に添付ファイルの処理に失敗していたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.49.23  2009/08/18 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>添付ファイルがEXEファイルの時、アイコンがファイル名だけの空白アイコンとなってしまっていたのを修正。EXE以外にも対応。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.49.22  2009/06/30 -- (VECTORにて公開)</DT>
+            <UL>
+                <LI>R6以前で送信時の添付ファイルアイコンが付かなかったため、添付ファイルアイコンの付け方を修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.49.21  2009/06/21 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>文書ID=0の文書でエラー（恐らく既読にしようとして）になっているのを修正してみた。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.49.20  2009/05/26 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>ボタンをHTMLパートに付ける様にした。ただし、押下時はノーツで該当文書を開きます。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.48.20  2009/05/25 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>環境設定で初めて転送後PPA処理ルーチンを開く時、表示される内容がPPA変換ルーチンの内容となってそのままで閉じてしまうと、転送処理で「変数または関数は定義されていません[NotesAddress]」のエラーとなってしまうため、転送後PPA処理ルーチンを初期表示する内容を変更した。
+                    <BR><span class="bold01">※既に編集を開いてしまい、転送実行時にエラーとなっている場合は、インストールフォルダに作成されているPPAAfter.txtファイルを削除して下さい。</span>
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.48.19  2009/05/18 -- </DT>
+            <UL>
+                <LI>Bodyが空白でもリンクが含まれている可能性があるため、HTMLパートは付ける様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.48.18  2009/04/29 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>本文(BODYのみ)をHTMLパートとして添付できる様にし、一緒に貼り付けされている画像・リンクも転送できる様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.47.18  2009/04/03 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>ノーツを使った送信での添付ファイルにアイコンが付く様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.46.18  2009/01/22 -- (VECTORで公開)</DT>
+            <UL>
+                <LI>海外からのメールを転送する際に、Date:ヘッダが処理PCとの時差分だけズレてしまっていたのを修正。
+                <LI>タイトルのみ送付のメールの件名をFwNotesとして付けるようにした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.45.17  2009/01/17 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>送信後後処理にPutLog関数を追加。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.44.17  2008/12/16 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>送信時に外部向けアドレスが有る時は内部アドレスも外部形式のまま送信する様に修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.44.16  2008/12/03 -- (VECTORで公開)</DT>
+            <UL>
+                <LI>内部使用ライブラリのバージョンアップに伴う再コンパイル。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.44.15  2008/10/15 -- (VECTORで公開)</DT>
+            <UL>
+                <LI>FormがNonDelivery Reportのメールへの対応でエラーメールとなった本文をMIMEパートを分けて付ける様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.43.15  2008/10/10 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>自分が送信したメールが配信エラーだった時に受信するFormがNonDelivery Reportのメールに対応した。
+                <LI>X-FwNotes-Form:ヘッダを付ける様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.42.15  2008/07/18 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>送信後、直ぐに未読検索を行う様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.41.15  2008/07/17 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>テキストリスト形式フィールドの値を取得する際に直前に取得した内容が残って取得されてしまっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.41.14  2008/05/02 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>１文書転送毎に既読に設定する様にした。
+                <LI>転送後後処理をPPAルーチンで指定できる様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.40.14  2008/02/22 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>Principalヘッダがあれば、それをFROMとして転送する様にした。
+                <LI>送信に失敗した時は必ずエラーメールを作成する様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.39.13  2007/09/16 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>添付ファイル名の処理でファイル名に「=」を含むファイルが処理できていなかったのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.39.12  2007/08/27 --</DT>
+            <UL>
+                <LI>Dateフィールドの設定でダイムゾーン部分に余計な"が付いてしまっていたのを修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.39.11  2007/08/26 --</DT>
+            <UL>
+                <LI>転送メールのヘッダに付ける日付関連フィールドのタイムゾーンを実行環境から取得する様に修正してみた。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.39.10  2007/08/25 --</DT>
+            <UL>
+                <LI>送信時に作成するメールのアドレス関連フィールを文字属性で作成していたのを文字リスト属性での作成に修正。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.39.09  2007/08/13 --</DT>
+            <UL>
+                <LI>送信メールのレターヘッドをプロフィール文書CalendarProfileから取得する様にした。
+                <LI>X-FwNotes-Identifier:ヘッダを付ける様にした。
+                <LI>送信対応版公開。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.38.09  2007/08/07 --</DT>
+            <UL>
+                <LI>外部からのメールで行頭の空白がカットされてしまっていたのを空白を残せる様（MIMEなメールのまま）に修正。
+                <LI>署名を付けて送信に対応した。
+                <LI>開封確認を付けて送信に対応した。
+                <LI>送信時、添付ファイルの貼り付け位置指定に対応した。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.37.09  2007/07/13 --</DT>
+            <UL>
+                <LI>ノーツを使ったメールの送信に対応した。引数1でemlファイル名を指定して実行する事でノーツから送信する。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.36.09  2007/03/22 --</DT>
+            <UL>
+                <LI>引数1でiniファイル名を指定できる様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.35.09  2007/01/05 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>暗号化メールの添付ファイルを取得できる様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.34.09  2006/12/18 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>元メールのReceived:ヘッダをReceived:として付ける様に変更した。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.33.09  2006/12/16 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>テキスト属性で複数値フィールドを持つフィールド値の取得方法をリッチテキストの場合に合わせた。
+                <LI>元メールのReceived:ヘッダをX-Received:として付ける様にした。
+                <LI>元メールのX-Mailer:ヘッダをX-Mailer-ORG:として付ける様にした。
+                <LI>元メールのSMTPOriginator:ヘッダをX-SMTPOriginator:として付ける様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.32.09  2006/10/04 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>受信確認の返信で返信した際に送付した文書でSubjectプロパティが２つ付いてしまいReturn Receiptフォームの件名に余計なRe:が付いてしまっていたのを修正した。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.32.08  2006/08/18 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>件名等でダブルコーテーション・シングルコーテーションが途中に含まれる時、先頭に移動してしまうのを修正した。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.32.07  2006/08/12 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>転送済み文書を既読にする／しないを設定できる様にした。
+                <LI>エラーログメールを、同じエラーが継続する場合は送信しない様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.31.07  2006/08/12 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>転送時に本文を折り返す桁位置を指定できる様にした。
+                <LI>In-Reply-Toヘッダに@LocalDomainが残ってしまうことがあるのを修正した。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.30.06  2006/08/02 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>ヘッダのMIMEエンコーディングを２バイト文字のみに対して行う様にした。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.30.05  2006/07/11 -- (VECTORで公開)</DT>
+            <UL>
+                <LI>暗号化メールの本文・添付ファイルの転送を可能とした
+                <LI>メールヘッダにX-FwNotes-Encrypt:を追加。暗号化メールの時は1がセットされる。
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.29.05  2006/07/08 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>受信確認を受信時の本文を固定としていたのを、受信確認メールにBodyフィールドがあれば、そちらから取得する様にした
+                <LI>ヘッダのMIMEエンコードをするかしないかのオプションを追加
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.28.05  2006/07/06 -- (非公開)</DT>
+            <UL>
+                <LI>差出人名に\や&quot;が含まれる時の対応の対応漏れを修正した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.28.04  2006/06/19 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>POP3とSMTP AUTHパスワードの桁数を20桁にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.27.04  2005/11/09 -- (非公開)</DT>
+            <UL>
+                <LI>差出人名に\や&quot;が含まれる時の対応
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.27.03  2005/09/12 -- (非公開)</DT>
+            <UL>
+                <LI>MIMEエンコードルーチンの消失のため1.27.02の修正を再度行う^^;
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.27.02  2005/05/14 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>TOやCCが長く内容に日本語を含む場合で、1アドレスを1行としているい時に全体をMIMEエンコードしていたのを1アドレス毎にMIMEエンコードする様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.27.01  2005/04/19 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>メールアドレスの変換結果を保持するキーとなるアドレスからCN=やO=等をカットして保持する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.27.00  2005/04/11 -- (非公開)</DT>
+            <UL>
+                <LI>添付ファイルのファイル名リストを付加するかどうかのオプションを追加した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.26.00  2005/04/01 -- (非公開)</DT>
+            <UL>
+                <LI>Footerフィールド（ステーショナリーを使用して送られてきたメールに付く）に対応した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.25.01  2005/02/25 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>エラーメールも本文のJISエンコードを行うオプションが働く様に修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.25.00  2005/02/11 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>転送済み文書を記憶して再転送しないオプションを追加
+                <LI>メールアドレスを変更
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.24.00  2004/09/20 -- (非公開)</DT>
+            <UL>
+                <LI>添付ファイルの処理中のエラーを無視するオプションを追加
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.23.00  2004/08/04 -- (非公開)</DT>
+            <UL>
+                <LI>メールヘッダにResent-From、Resent-To、Resent-Dateを付けない設定を可能とした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.22.01  2004/07/14 -- (非公開)</DT>
+            <UL>
+                <LI>(BUG)公開アドレス帳を開く際にメールボックスと違うサーバ上の公開アドレス帳であった場合にエラーになっていたのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.22.00  2004/05/17 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>In-Reply-To:ヘッダをセットする際にメール文書にIn-Reply-Toフィールドが有ればそれを参照する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.21.01  2004/04/27 --</DT>
+            <UL>
+                <LI>(BUG)Dateヘッダの月がセットできていなかったのを修正（SMTPタイムアウト対応の際に混入）
+                <LI>(BUG)ヘッダのMIMEエンコードでまずいところがあったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.21.00  2004/04/21, 2004/04/26 -- (非公開)</DT>
+            <UL>
+                <LI>PPA変換ルーチンの既定ロジックを変更した
+                <LI>公開アドレス帳のインターネットアドレスを参照するを、初期値では参照しないとした（PPA変換ロジック内にて変換できなかった場合にのみ参照されるため）
+                <LI>Reply-Toヘッダも取得する様にした
+                <LI>説明資料(当資料)一部改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.20.03  2004/04/17 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>インターネットアドレスへの変換で時間が掛かりSMTPがタイムアウトしていたのを対応してみた
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.20.02  2004/04/15 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>インターネットアドレスへの変換で時間が掛かりSMTPがタイムアウトしていたのを対応してみたが、失敗であった(^^ゞ
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.20.01  2004/04/14 -- (非公開)</DT>
+            <UL>
+                <LI>公開アドレス帳対象の指定でうまくいってなかったと思われる箇所を修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.20.00  2004/04/12 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>メールアドレスの変換結果を内部テーブルに保持して高速化を図る様にした
+                <LI>(BUG)PPAADRS.txtがNotes導入フォルダに作成されてしまう事があったのを修正した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.19.00  2004/03/06 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>Notes処理ライブラリのバージョンをアップした
+                <LI>仮ライセンス登録用のメールにOSとノーツのビルド番号を添付する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.18.02  2004/02/17 --</DT>
+            <UL>
+                <LI>(BUG)メールボックスをローカルにした時、公開アドレス帳のインターネットアドレスを参照する設定が有効にならずにアドレスの変換ができていなかったのを修正。この修正により、アドレス帳のサーバーを指定できる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.18.01  2004/01/28 --</DT>
+            <UL>
+                <LI>説明資料(当資料)一部改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.18.01  2003/12/21 -- (非公開)</DT>
+            <UL>
+                <LI>一部コードの最適化
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.18.00  2003/11/30, 2003/11/28, 2003/11/18 --</DT>
+            <UL>
+                <LI>公開アドレス帳が複数あるとき検索の対象とするかどうかを設定できる様にした
+                <LI>(BUG)対象メールで文書のIDがゼロの時スキップする様にしていたが、この文書が最初の文書であった時にワークフォルダを作る処理もスキップされてしまいエラーが発生したのを修正した。もう1点関連箇所修正(thanks&gt;佐藤さん)
+                <LI>UNID・ファイル名・サーバを指定して起動することでノーツで指定された文書を開ける様にした＞使い道が有るか？？
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.17.02  2003/11/05 --</DT>
+            <UL>
+                <LI>(BUG)試用中表示から仮ライセンス登録用のメール送信でOEでsubjectにbodyがくっついてしまい、bodyがうまく設定できていなかったのを修正した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.17.01  2003/10/29 --</DT>
+            <UL>
+                <LI>(BUG)eml形式での保存時にファイルの最後に.(ピリオド)を付けていたのを付けない様にした
+                <LI>(BUG)文書にBodyフィールドが無い時エラーになって転送できなかったのを修正した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.17.00  2003/10/21 --</DT>
+            <UL>
+                <LI>受信確認付きのメールに、受信確認レポートを返信できる様にした
+                <LI>Disposition-Notification-Toを付加するかどうかを選択できる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.16.00  2003/10/20 -- (非公開)</DT>
+            <UL>
+                <LI>受信確認付きのメールの時、転送メールのヘッダにDisposition-Notification-To: を付加する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.15.00  2003/10/20 -- (非公開)</DT>
+            <UL>
+                <LI>PPA変換ルーチン内から公開アドレス帳のInternetAddressを取得できる様にした。単純に公開アドレス帳を参照してレスポンスが悪い時に特定のアドレスに限って公開アドレス帳を参照することができる様になった
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.14.00  2003/10/14 --</DT>
+            <UL>
+                <LI>試用中表示から仮ライセンス登録用のメール送信ができる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.02  2003/08/05 --</DT>
+            <UL>
+                <LI>(BUG)1.13.01で対応モレがあり、エラーにはならないがログにエラーメッセージを出力してしまっていたのを出力しない様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.01  2003/08/05 -- (非公開)</DT>
+            <UL>
+                <LI>(BUG)メール文書にBodyフィールドが存在しない時にエラーとなっていたのを、Bodyフィールドが存在しない時でAppointmentTypeフィールドが空白で無い場合はエラーとしない様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.00  2003/07/17 -- (非公開)</DT>
+            <UL>
+                <LI>SMTPサーバへの送信で、メールヘッダにResent-From、Resent-To、Resent-Dateを指定する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.12.01  2003/07/17 -- (非公開)</DT>
+            <UL>
+                <LI>(BUG?)1.09.00のNotes処理ライブラリのバージョンをアップにより、暗号化されたメールでError $0222:文書アイテムが見つかりませんのエラーになっていたのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.12.00b1  2003/07/13 -- (非公開)</DT>
+            <UL>
+                <LI>SMTPサーバへの送信で、MAIL FROMを指定できる様にした
+                <LI>SMTPサーバへの送信で、RCPT TOを複数指定できる様にした
+                <LI>SMTPサーバへの送信で、SMTP AUTHに対応した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.11.00b2  2003/06/28 -- (非公開)</DT>
+            <UL>
+                <LI>(BUG)PPA変換ルーチンを編集して変換テストを行っても再起動するまで編集内容が反映されていなかったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.11.00b1  2003/06/25 -- (非公開)</DT>
+            <UL>
+                <LI>アドレス変換にPPAロジックを適用できる様にした
+                <LI>説明資料(当資料)一部改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.10.00  2003/06/24 -- (非公開)</DT>
+            <UL>
+                <LI>個人アドレス帳にInternetAddressが登録されていればその内容を取得する様にした。ただし、コメントに登録されていればそちらを優先する
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.09.01  2003/06/10 --</DT>
+            <UL>
+                <LI>(BUG)lnpass.dllをNOTES.iniに登録し、登録を解除する際に別のアドインツールが登録されているとカンマが残ってしまうのを修正した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.09.00  2003/05/29 -- (非公開)</DT>
+            <UL>
+                <LI>Notes処理ライブラリのバージョンをアップした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.08.01  2003/05/25 -- (非公開)</DT>
+            <UL>
+                <LI>添付ファイル名の処理でエラー時にデバッグログを出力する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.08.00  2003/05/18 -- (非公開)</DT>
+            <UL>
+                <LI>転送時にTO:、CC:、BCC:ヘッダがBLANKになる際には作成しない様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.07  2003/05/12 --</DT>
+            <UL>
+                <LI>認証失敗時にデバッグログに出力する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.06  2003/04/16 -- (非公開)</DT>
+            <UL>
+                <LI>デバッグログ作成のオプションを追加
+                <LI>起動時にNNOTES.DLLを検索し、見つからなければ環境設定画面を表示する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.05  2003/04/15 -- (非公開)</DT>
+            <UL>
+                <LI>NOTES.iniで個人アドレス帳の設定(NAMES=)がされていない時の対応をした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.04  2003/04/15 -- (非公開)</DT>
+            <UL>
+                <LI>Notes導入フォルダが未設定の時、レジストリより導入フォルダを取得する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.03  2003/04/13 -- (非公開)</DT>
+            <UL>
+                <LI>Notes導入フォルダの設定が間違っていそうな時、環境設定の画面を表示する様にした
+                <LI>環境設定画面のデザインを変更した（内容は変わっていない）
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.02  2003/03/05 -- (非公開)</DT>
+            <UL>
+                <LI>未読文書のIDがゼロの時次の未読文書にスキップする様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.01  2003/02/14 --</DT>
+            <UL>
+                <LI>(BUG)新規インストール直後、環境設定画面表示と同時にエラーが発生していたのを修正(Ver1.06.00時点で混入)
+                <LI>(BUG)メールボックスが正常にオープンできなかった時、SMTP関連の設定にも不備があってエラーが発生するケースでFwNotes.exeが終了せずタスクに残ってしまっていたのを修正(Ver1.06.00時点で混入)
+                <LI>ソースコード中で不要な箇所を整理
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.07.00  2003/02/02 --</DT>
+            <UL>
+                <LI>ファイル保管の形式をeml形式・mbox形式・カスタムから選択できる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.06.03  2003/02/02 -- (非公開)</DT>
+            <UL>
+                <LI>添付ファイル名の英小文字が大文字になってしまっていたのを小文字のままとする様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.06.01  2003/01/21 --</DT>
+            <UL>
+                <LI>Notes処理ライブラリのバージョンをアップした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.06.00  2003/01/16 -- (非公開)</DT>
+            <UL>
+                <LI>実行時にアクティブ化してしまい使用中アプリのフォーカスを奪ってしまうのをアクティブ化しない様に修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.05.00  2003/01/07 --</DT>
+            <UL>
+                <LI>POP before SMTPに対応
+                <LI>SMTPサーバのポート番号を変更できる様にした
+                <LI>説明資料(当資料)一部改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.04.00  2002/12/23 --</DT>
+            <UL>
+                <LI>タイトルのみ送付先を追加。主に携帯電話宛に送付する事を想定してタイトル・日付のみを本文にし指定宛先に転送できる様にした
+                <LI>タイトルに半角カナ濁音が有るとき全角濁音に変換する様にした
+                <LI>ヘッダ部アドレスを1アドレス1行に編集できる様にした
+                <LI>ヘッダ部件名等を1行76桁前後で改行できる様にした
+                <LI>SMTP送信の際のMAIL FROM・RCPT TOに指定するアドレスを&lt;&gt;で囲う様に修正。一部のSMTPサーバでエラーになる対応
+                <LI>説明資料(当資料)一部改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.03.01  2002/11/28 --</DT>
+            <UL>
+                <LI>(BUG)FWNOTESMAIN.exe起動時のCreateProcess後、CloseHandleし忘れていたのを修正
+                <LI>(BUG)FWNOTESCONFIG.exe起動時のCreateProcess後、CloseHandleし忘れていたのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.03.00  2002/09/12 --</DT>
+            <UL>
+                <LI>本文のみ転送するオプション追加
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.12  2002/08/09 --</DT>
+            <UL>
+                <LI>Notes処理ライブラリのバージョンをアップした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.11  2002/07/25 --</DT>
+            <UL>
+                <LI>(BUG)Bodyがリッチテキストで無い場合にエラー(this itemis not Ritch-text:Body)が発生していたのを修正
+                <LI>簡易インストーラによるセットアップイメージとした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.10  2002/07/04 --</DT>
+            <UL>
+                <LI>本文の最後に付ける添付ファイル名がNotesが付けるものと紛らわしいのでFwNotes:と付けるようにした
+                <LI>Notes処理ライブラリのバージョンをアップした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.09  2002/07/02 --</DT>
+            <UL>
+                <LI>同名の添付ファイル名が添付されている場合に、ファイル名がATT～となってしまっていたのを修正
+                <LI>本文の最後(一番下)に添付ファイル名を付ける様にした
+                <LI>連絡先メールアドレス変更
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.08  2002/06/29 --</DT>
+            <UL>
+                <LI>添付ファイル名に09hなど、ファイル名として不正な文字が含まれている場合に、不正な文字をxNN(NN=文字コード)に変換する様にした。対象は、01h～1Fh、\、/、:、,、;、*、?、&quot;、&lt;、&gt;、|
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.07  2002/06/27 --</DT>
+            <UL>
+                <LI>(BUG)BodyをRTFで添付する際のメモリリークを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.06  2002/06/13 --</DT>
+            <UL>
+                <LI>(BUG)本文のサイズが大きく複数Bodyフィールドに分かれてしまっている時、最初のBodyフィールドしか取ってきていなかったのを修正(本文のみ、Body.RTFは未解決)
+                <LI>(BUG)同Body.RTFについては、現状一つにまとめることができないため、Body.RTF、Body2.RTF・・の様に名前を変えて複数添付する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.05  2002/06/12 --</DT>
+            <UL>
+                <LI>(BUG)本文無しで添付ファイルのみの時、添付ファイルが添付されていなかったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.04  2002/06/12 --</DT>
+            <UL>
+                <LI>Notes処理ライブラリのバージョンをアップした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.03  2002/06/11 --</DT>
+            <UL>
+                <LI>公開アドレス帳の参照をnames.nsf限定だったのをサーバで使用中のリストを取得して見つかるまですべて参照する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.02  2002/06/11 --</DT>
+            <UL>
+                <LI>ReferencesフィールドからのメッセージID作成で4ブロック目の値が3ブロック目と同じ値になっていたのを修正
+                <LI>$MessageIDから取得できない場合、文書IDをメッセージIDとしてセットする様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.01  2002/06/11 --</DT>
+            <UL>
+                <LI>変換ルールによるノーツアドレスのE-MAILアドレスへの変換は、対象が'CN='で始まる時のみに修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.02.00  2002/06/10 --</DT>
+            <UL>
+                <LI>ノーツアドレスのE-MAILアドレスへの変換で公開アドレス帳を引くかどうかを選択できる様にした
+                <LI>ノーツアドレスのE-MAILアドレスへの変換で変換ルールによる変換をサポート。登録にはコツがいりそう(..;)
+                <LI>Message-IDの変換で変換ルールによる変換をサポート
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.1.0  2002/06/07 --</DT>
+            <UL>
+                <LI>対象のメールDBを指定できる様にした。これにより、過去メールの移行が可能になるのではないかと期待する
+                <LI>ノーツアドレスのE-MAILアドレスへの変換を公開アドレス帳を引く様に変更
+                <LI>個人アドレス帳をLocalのnames.nsfと限定していたのをやめ、設定に応じて参照する様にした
+                <LI>ヘッダのDateの年を西暦4桁とした
+                <LI>ヘッダに対象のデータベースの情報を出力する様にした
+                <LI>メモリリーク1点修正
+                <LI>説明資料(当資料)一部改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.0.5  2002/05/20 --</DT>
+            <UL>
+                <LI>メモリリーク2点修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.0.4  2002/04/16 --</DT>
+            <UL>
+                <LI>テキストファイル(～.txt)が添付ファイルとして付いている時のMIME Encode方法を変更し、転送先のメーラでも添付ファイルとして扱われる様にした
+                <LI>添付ファイルのファイル名に半角カナ濁音が有るときのファイル名を全角濁音に変換する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.0.3  2002/03/28 --</DT>
+            <UL>
+                <LI>本文をリッチテキストで添付しない場合に、不要なMIME Encodeを行わない様にした
+                <LI>NotesアドレスからE-MAILアドレスへの変換でCU=xxxxx/O=yyy形式の場合は正しく変換できていたのが、xxxxx/yyy形式の場合に変換できてなかったのでこの形式の場合は、xxxxxで個人アドレス帳を検索する様にしてみた→影響度合いは不明(^^;
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.0.2  2002/03/26 --</DT>
+            <UL>
+                <LI>不具合修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.0.1  2002/03/08 --</DT>
+            <UL>
+                <LI>ヘッダのMessage-Id:から@が無くなってしまう場合があるのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.0.0  2002/03/05 --</DT>
+            <UL>
+                <LI>リリース
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=4'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</span>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=4&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

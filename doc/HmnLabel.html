@@ -1,0 +1,198 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>HmnLabel - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="../_.js"></SCRIPT>
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="./_.js"></SCRIPT>
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    HmnLabel
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">概要説明</span></DT>
+        <UL>
+            <LI>Delphi用ラベルコンポーネント
+            <LI>ラベルにベベル設定を追加し、２分割・３分割表示もできる様にしました
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">インストール方法</span></DT>
+        <UL>
+            <LI>コンポーネントのインストールで既存もしくは新規パッケージに追加してパッケージをコンパイルして下さい
+            <LI>追加するユニットファイルは、HmnLabel.pasです
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">アンインストール方法</span></DT>
+        <UL>
+            <LI>追加したパッケージからHmnLabelを削除してパッケージをコンパイルしなおして下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnLabelプロパティ</span></DT>
+        <DL>
+            <DT>Alignment: THmnLBLAlignment default taLeftJustify;</DT>
+            <UL>
+                <LI>キャプションの横方向の配置
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "taLeftJustify", "ラベルの左端に表示される", "");
+                    f_record(2, "taRightJustify", "ラベルの右端に表示される", "");
+                    f_record(2, "taCenter", "ラベルの中央に表示される", "");
+                    f_record(2, "taSplit", "ラベルに２分割で表示される（左端と右端）", "");
+                    f_record(2, "taTriple", "ラベルに３分割で表示される（左端と中央と右端）", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>BevelInner: TPanelBevel default bvNone;</DT>
+            <UL>
+                <LI>内部ベベルのスタイルの設定。TPanel参照
+            </UL>
+            <DT>BevelOuter: TPanelBevel default bvNone;</DT>
+            <UL>
+                <LI>外部ベベルのスタイルの設定。TPanel参照
+            </UL>
+            <DT>BevelWidth: TBevelWidth default 1;</DT>
+            <UL>
+                <LI>ベベルの幅の設定。TPanel参照
+            </UL>
+            <DT>LeftMargins: integer default 0;</DT>
+            <UL>
+                <LI>キャプションの左端の表示位置調整
+                <LI>AlignmentがtaRightJustify以外の表示位置で効果が出る
+            </UL>
+            <DT>RightMargins: integer default 0;</DT>
+            <UL>
+                <LI>キャプションの右端の表示位置調整
+                <LI>AlignmentがtaLeftJustify以外の表示位置で効果が出る
+            </UL>
+            <DT>TopMargins: integer default 0;</DT>
+            <UL>
+                <LI>キャプションの上端の表示位置調整
+                <LI>LayoutがtlBottom以外の表示位置で効果が出る
+            </UL>
+            <DT>BottomMargins: integer default 0;</DT>
+            <UL>
+                <LI>キャプションの下端の表示位置調整
+                <LI>LayoutがtlTop以外の表示位置で効果が出る
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作環境：Borland Delphi 6、7、8(VCL)</DT>
+            <DT>※ただし、D8対応については暫定的な対応です</DT>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたらE-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 1.00.00  2004/02/11 --</DT>
+            <UL>
+                <LI>とりあえずひっそりと公開開始
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ダウンロード</span></DT>
+        <DL>
+            <DT><A HREF="../downdata/HMNLABEL.LZH">
+                <span class="sec01">DOWNLOAD (HMNLABEL.LZH)</span>
+            </A></DT>
+            <BR CLEAR="ALL">
+
+            <DT><A HREF="../downdata/TESTHMNLABEL.LZH">
+                <span class="sec01">テストプロジェクトとEXE  DOWNLOAD (TESTHMNLABEL.LZH)</span>
+            </A></DT>
+        </DL>
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=13'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</span>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=13&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

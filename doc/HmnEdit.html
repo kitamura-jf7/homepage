@@ -1,0 +1,363 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>HmnEdit - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="../_.js"></SCRIPT>
+  <SCRIPT LANGUAGE="javascript" charset="utf-8" src="./_.js"></SCRIPT>
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    HmnEdit
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">概要説明</span></DT>
+        <UL>
+            <LI>Delphi用エディットコンポーネント
+            <LI>須田さん作のTSsEditをベースに機能追加し新たに作り直しました
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">インストール方法</span></DT>
+        <UL>
+            <LI>コンポーネントのインストールで既存もしくは新規パッケージに追加してパッケージをコンパイルして下さい
+            <LI>追加するユニットファイルは、HmnEdit.pasです
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">アンインストール方法</span></DT>
+        <UL>
+            <LI>追加したパッケージからHmnEditとHmnEdit.dcrを削除してパッケージをコンパイルしなおして下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnEditプロパティ</span></DT>
+        <DL>
+            <DT>Alignment: TAlignment default taLeftJustify;</DT>
+            <UL>
+                <LI>テキストの横方向の配置
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "taLeftJustify", "エディットの左端に表示される", "");
+                    f_record(2, "taRightJustify", "エディットの右端に表示される", "");
+                    f_record(2, "taCenter", "エディットの中央に表示される", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>AutoSize: Boolean default False;</DT>
+            <UL>
+                <LI>デザイン時にテキストの内容に応じてサイズを決定するかどうか
+                <LI>実行時には影響しない
+            </UL>
+            <DT>ChangeEventMode: THmnChangeEventMode ;</DT>
+            <UL>
+                <LI>changeイベントの発生のしかた
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "cemNormal", "通常", "");
+                    f_record(2, "cemNonKeydown", "キー入力ではない代入でもchangeイベントを発生させる", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>DisplayDateTimeFormat: string default '';</DT>
+            <UL>
+                <LI>EditOption.EditStyleがesDateとesTimeの時のテキスト編集書式
+            </UL>
+            <DT>EditOption: THmnEditOption;</DT>
+            <UL>
+                <LI>入力後の書式形式等の設定。THmnEditOption参照
+            </UL>
+            <DT>ErrColor: TColor default clRed;</DT>
+            <UL>
+                <LI>ShowErrorがTrueのときの表示色
+            </UL>
+            <DT>ErrFont: TFont;</DT>
+            <UL>
+                <LI>ShowErrorがTrueのときのフォント（色）
+            </UL>
+            <DT>ExitAutoTrim: THmnAutoTrim default eaTrimRight;</DT>
+            <UL>
+                <LI>Exit時に行うTrim設定。全角空白も取り除く対象とする
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "eaNone", "なし", "");
+                    f_record(2, "eaTrim", "先頭部分および末尾部分の空白と制御文字を取り除く", "");
+                    f_record(2, "eaTrimLeft", "先頭部分の空白と制御文字を取り除く", "");
+                    f_record(2, "eaTrimRight", "末尾部分の空白と制御文字を取り除く", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>GoNextOnEnterKey: boolean default False;</DT>
+            <UL>
+                <LI>Enterキー入力で次にフォーカスを移すかどうか
+            </UL>
+            <DT>LeftMargins: integer default 0;</DT>
+            <UL>
+                <LI>テキストの左端の表示位置調整
+                <LI>AlignmentがtaRightJustify以外の表示位置で効果が出る
+            </UL>
+            <DT>MaxValue: string default '';</DT>
+            <UL>
+                <LI>入力の最大値
+            </UL>
+            <DT>MinusColor: TColor default clRed;</DT>
+            <UL>
+                <LI>入力値がマイナスのときの文字色
+                <LI>EditOption.EditStyleがesNumericかesZeroNumかesCommaかesMoneyの時に有効
+            </UL>
+            <DT>MinValue: string default '';</DT>
+            <UL>
+                <LI>入力の最小値
+            </UL>
+            <DT>NullValue: string ;</DT>
+            <UL>
+                <LI>テキストが空文字のときにValueプロパティで戻す値
+            </UL>
+            <DT>RightMargins: integer default 0;</DT>
+            <UL>
+                <LI>テキストの右端の表示位置調整
+                <LI>AlignmentがtaLeftJustify以外の表示位置で効果が出る
+            </UL>
+            <DT>ShowEnabledMode: THmnShowEnabledMode default semNormal;</DT>
+            <UL>
+                <LI>EnabledがFalseのときの表示設定
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "semNormal", "通常", "");
+                    f_record(2, "semOriginal", "見た目をEnabled=Trueのときのままとする", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>ShowError: boolean default True;</DT>
+            <UL>
+                <LI>エラー表示モードにするかどうか
+                <LI>入力エラーを関知した際には自動でエラー表示モードに切り替える
+                <LI>また、エラー表示モードは次の入力で自動的に解除される
+            </UL>
+            <DT>ShowMsg: Boolean default True;</DT>
+            <UL>
+                <LI>エラーを関知したときにメッセージ表示を行うかどうか
+            </UL>
+            <DT>VAlignment: THmnVAlignment default taTopJustify;</DT>
+            <UL>
+                <LI>テキストの縦方向の配置
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="30%"></TD><TD WIDTH="70%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(2, "taTopJustify", "エディットの上端に表示される", "");
+                    f_record(2, "taVCenter", "エディットの中央に表示される", "");
+                    f_record(2, "taBottomJustify", "エディットの下端に表示される", "");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>Value: Variant;</DT>
+            <UL>
+                <LI>テキストをEditOption.EditStyleに応じて変換した値
+                <LI>代入することも可能
+            </UL>
+            <DT>ZeroColor: TColor ;</DT>
+            <UL>
+                <LI>入力値がゼロのときの文字色
+                <LI>EditOption.EditStyleがesNumericかesZeroNumかesCommaかesMoneyの時に有効
+            </UL>
+            <DT>ZeroDisplay: boolean default True;</DT>
+            <UL>
+                <LI>入力値がゼロのとき表示するかどうか
+                <LI>EditOption.EditStyleがesNumericかesZeroNumかesCommaかesMoneyの時に有効
+            </UL>
+            <DT>Version: string;</DT>
+            <UL>
+                <LI>HmnEditのバージョン
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnEditイベント</span></DT>
+        <DL>
+            <DT>OnChangeAtExit;</DT>
+            <UL>
+                <LI>テキストが変更されてExitが起こったとき
+            </UL>
+            <DT>OnEnterKey;</DT>
+            <UL>
+                <LI>Enterキーが押されたとき
+            </UL>
+            <DT>OnErrCheck;</DT>
+            <UL>
+                <LI>入力チェックをするためのイベントハンドラ
+                <LI>ただし、このイベントはユーザが開始する必要がある
+            </UL>
+            <DT>OnInvalid;</DT>
+            <UL>
+                <LI>内部でエラーを察知したときに通知されるイベントハンドラ
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnEditOptionプロパティ</span></DT>
+        <DL>
+            <DT>EditStyle: THmnEditStyle default esNone;</DT>
+            <UL>
+                <LI>入力後の書式編集形式
+                <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="1">
+                    <TD WIDTH="10%"></TD><TD WIDTH="30%"></TD><TD WIDTH="60%"></TD>
+<SCRIPT LANGUAGE="javascript">
+                    f_record(3, "esNone", "無編集", "");
+                    f_record(3, "esNumeric", "数値編集", "");
+                    f_record(3, "esZeroNum", "前ゼロ数値編集", "'123' => '00000123'");
+                    f_record(3, "esComma", "カンマ編集", "'-123456.789' => '-123,456.789'");
+                    f_record(3, "esMoney", "通貨編集", "'-123456.789' => '\-123,456.789'");
+                    f_record(3, "esDate", "日付編集", "'20010101' => '2001/01/01'<BR>OSが認識できる形であれば省略入力も可能");
+                    f_record(3, "esTime", "時刻編集", "'095900' => '09:59:00'");
+</SCRIPT>
+                </TABLE>
+            </UL>
+            <DT>Length: THmnEditLength;</DT>
+            <UL>
+                <LI>THmnEditLength参照
+            </UL>
+            <DT>DoEmptyCheck: Boolean default False;</DT>
+            <UL>
+                <LI>未入力を許可しないかどうか
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">THmnEditLengthプロパティ</span></DT>
+        <DL>
+            <DT>MaxLength: Integer;</DT>
+            <UL>
+                <LI>入力できる文字の最大長
+            </UL>
+            <DT>DecLength: THmnDecLimit;</DT>
+            <UL>
+                <LI>小数部の有効桁数。最大5桁
+                <LI>EditOption.EditStyleがesCommaかesMoneyの時のみ有効
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作環境：Borland Delphi 6、7、8(VCL)</DT>
+            <DT>※ただし、D8対応については暫定的な対応です</DT>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他・既知の問題点</span></DT>
+        <UL>
+            <LI>ま、いろいろ問題はあるかと．．．(苦笑)
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたらE-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 2.00.00  2004/02/11 --</DT>
+            <UL>
+                <LI>とりあえずひっそりと公開開始
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ダウンロード</span></DT>
+        <DL>
+            <DT><A HREF="../downdata/HMNEDIT.LZH">
+                <span class="sec01">DOWNLOAD (HMNEDIT.LZH)</span>
+            </A></DT>
+            <BR CLEAR="ALL">
+
+            <DT><A HREF="../downdata/TESTHMNEDIT.LZH">
+                <span class="sec01">テストプロジェクトとEXE  DOWNLOAD (TESTHMNEDIT.LZH)</span>
+            </A></DT>
+        </DL>
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=14'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</span>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=14&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

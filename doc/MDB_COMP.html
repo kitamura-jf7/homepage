@@ -1,0 +1,219 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>MDB最適化実行 - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    MDB最適化実行
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">機能説明</span></DT>
+        <UL>
+            <LI>MS Access で使用するMDBファイルの圧縮を手助けします
+            <LI>パラメータで指定されたMDBファイルのバージョンを判断し、予め指定した該当するバージョンのMSACCESS.exeを最適化を行うパラメータを指定してMDBファイルの最適化を行います
+            <LI>最適化の際には、最適化前のMDBファイルを月日を付けた名前でバックアップとして作成します
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">環境設定</span></DT>
+        <DL>
+            <DT>AccessのEXEの場所</DT>
+            <DL>
+                <DT>95/97/2000/2002/2003のそれぞれのバージョンに応じたMSACCESS.exeをフルパスで指定します</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>関連付け</DT>
+            <DL>
+                <DT>関連付けを実行すると、MDBファイルに対してエクスプローラの右クリックで「最適化」が追加されます</DT>
+            </DL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">操作</span></DT>
+        <UL>
+            <LI>実行はEXEファイルを開くだけです
+            <LI>初回は、EXEファイルを何も指定せず開いて環境設定を行います
+            <LI>以降は、通常であればエクスプローラの右クリックで自動的に実行され、MDBファイルが最適化されます
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">オプション</span></DT>
+        <UL>
+            <LI>なし
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作確認済み環境</DT>
+            <UL>
+                <LI>WindowsServer2003Ent.(評価ビルド3790)
+                <LI>Windows2000Pro.
+                <LI>Windows98/95
+                <LI>WindowsNT4.0Server
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT>開発環境</DT>
+            <UL>
+                <LI>WindowsServer2003Ent.(評価ビルド3790)
+                <LI>AMD Athlon XP 2500+、512MB
+                <LI>Delphi 6 Professional + Update Pack 1
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他・既知の問題点</span></DT>
+        <UL>
+            <LI>Access2003のMDBに一応対応したつもりです
+            <LI>アンインストールはEXEファイル、TXTファイルとiniファイルを削除するだけですレジストリは次の場所を使用しています
+            <BLOCKQUOTE>
+                HKEY_CLASSES_ROOT\.mdb\(標準)<BR>
+                に登録されているアプリケーションの<BR>
+                    \shell\最適化\　以下<BR>
+                <BR>
+                具体的には、Access2000導入環境であれば、HKEY_CLASSES_ROOT\Access.Application.8\shell\最適化となります
+            </BLOCKQUOTE>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません
+            <LI>ただし、書籍など、何らかの「物」とともに配布する場合は、サンプルとして提供してください。事後でもかまいません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたらE-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 1.14.04  2005/12/28 --</DT>
+            <UL>
+                <LI>バージョン判定を高速化した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.14.03  2005/11/03 --</DT>
+            <UL>
+                <LI>バージョン判定を前面見直し。MDB中のバージョン文字を探して判定する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.03  2003/01/20 --</DT>
+            <UL>
+                <LI>Access97→2000への変換したMDBで誤判定があったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.02  2002/09/04 --</DT>
+            <UL>
+                <LI>Access97→2000への変換したMDBで誤判定があったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.01  2002/08/20 --</DT>
+            <UL>
+                <LI>Access97→2000への変換したMDBで誤判定があったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.13.00  2002/08/14 --</DT>
+            <UL>
+                <LI>Access2002暫定対応
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 1.12.00  2002/06/21 --</DT>
+            <UL>
+                <LI>リリース
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><A HREF="../downdata/MDB_COMP.lzh">
+            <span class="sec01">DOWNLOAD (MDB_COMP.lzh)</span>
+        </A></DT>
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=8'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</div>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=8&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

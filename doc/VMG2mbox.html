@@ -1,0 +1,219 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>VMG→mbox一括変換 - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    VMG→mbox一括変換
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">機能説明</span></DT>
+        <UL>
+            <LI>PCにバックアップした携帯のVMGメールファイルをmbox形式ファイルに一括変換するツールです。</LI>
+            <LI>VMGファイルが入っているフォルダを指定して一括で変換するか、VMGファイルを１つ指定して変換する事が可能です。</LI>
+            <LI>１つのVMGファイルに複数メールが入っていてもそのままで変換が可能です。</LI>
+            <LI>PPA変換ルーチでちょっとした変換処理を組み込む事が可能です。</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">スクリーンショット</span></DT>
+        <UL>
+            <IMG SRC="VMG2mbox.gif" ALIGN="BOTTOM" BORDER="0"><BR>
+        </UL>
+        <BR CLEAR="ALL">
+
+       <DT><span class="sec01">操作</span></DT>
+        <UL>
+            <LI>EXEファイルを開くと画面が表示されます。</LI>
+            <LI>次の設定項目を入力し、開始ボタンを押して変換を行います。</LI>
+            <DT>VMGファイル</DT>
+            <UL>
+                <DT>変換元のVMGファイルが入ったフォルダまたはVMGファイルを指定します。</DT>
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT>出力ファイル</DT>
+            <UL>
+                <DT>変換後に作成するmbox形式ファイルのファイル名を指定します。既に存在するファイル名を指定した場合は、実行時に削除の確認があります。</DT>
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT>メッセージ変換ルーチン</DT>
+            <UL>
+                <DT>予めauのメールを変換する際に自分のアドレス（送信時はFrom、受信時はToヘッダ）が空白となるため、'(自分)'とセットするルーチンを記述しています。</DT>
+                <DT>その他にも、必要に応じて処理を追加可能です。文法については、同梱のPPA.HLPをご確認下さい。</DT>
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT>メッセージ変換ルーチン</DT>
+            <UL>
+                <DT>予めauのメールを変換する際に自分のアドレス（送信時はFrom、受信時はToヘッダ）が空白となるため、'(自分)'とセットするルーチンを記述しています。</DT>
+                <DT>その他にも、必要に応じて処理を追加可能です。文法については、同梱のPPA.HLPをご確認下さい。</DT>
+                <UL>
+                    <LI>組み込み関数</LI>
+                    <UL>
+                        <DT>function GetHeader(ヘッダ名: string): string;</DT>
+                        <UL>
+                            <DT>メールヘッダより、引数ヘッダ名の値を取得します。ヘッダが存在しない場合は、空白を返します。</DT>
+                        </UL>
+                        <P>
+                        <DT>function SetHeader(ヘッダ名: string; 値: string): string;</DT>
+                        <UL>
+                            <DT>ヘッダ名に値をセットします。関数の戻り値で置き換えたか追加したかを知る事ができます。戻り値→'0'＝置換、'1'＝追加</DT>
+                        </UL>
+                        <P>
+                        <DT>function DeleteHeader(ヘッダ名: string): string;</DT>
+                        <UL>
+                            <DT>メールヘッダより、引数ヘッダ名を削除します。関数の戻り値で置き換えたか追加したかを知る事ができます。戻り値→'0'＝置換、'1'＝追加</DT>
+                        </UL>
+                    </UL>
+                </UL>
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT>番号→アドレス変換表</DT>
+            <UL>
+                <DT>電話番号で送受信したメールで、相手・自分の番号をアドレスに変換する対応表です。新規に入力して追加するか、一覧から選択して変更・削除が可能です。</DT>
+                <UL>
+                    <LI>番号</LI>
+                    <UL>
+                        <DT>変換元の番号を指定します。</DT>
+                        <DT>初期登録されている「(自分)」については、メッセージ変換ルーチン内で自分のアドレスが入るべきところについてToまたはFromヘッダに「(自分)」をセットする様にしていますので、さらにこちらのアドレス変換表で実メールアドレスへの変換をさせる様に使用することができます。</DT>
+                    </UL>
+                    <P>
+                    <LI>アドレス</LI>
+                    <UL>
+                        <DT>変換後のアドレスを指定します。名前も一緒に入力することもできます。</DT>
+                        <UL>
+                            <DT>ex.)1234567890→名前 &ltaddress@ezweb.ne.jp&gt</DT>
+                        </UL>
+                    </UL>
+                </UL>
+            </UL>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">起動時オプション</span></DT>
+        <UL>
+            <LI>なし</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作確認済み環境</DT>
+            <UL>
+                <LI>Windows Server 2003 R2 Ent. SP1(評価ビルド3790)</LI>
+                <LI>Windows 2000 Server</LI>
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT>開発環境</DT>
+            <UL>
+                <LI>Windows Server 2003 R2 Ent. SP1(評価ビルド3790)</LI>
+                <LI>AMD Athlon XP 2500+、512MB</LI>
+                <LI>Delphi 6 Professional + Update Pack 1</LI>
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他</span></DT>
+        <UL>
+            <LI>アンインストールはコントロールパネルのアプリケーションの追加と削除より行って下さい。ただし、インストールしたフォルダにiniファイルが残りますのでそれについては手動で削除して下さい。</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません。</LI>
+            <LI>しかしながら、カンパは随時受け付けております(^^)</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します。</LI>
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません。</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい。</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたら、E-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします。</LI>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 1.02.01  2007/03/31 -- <span class="highlight">(開発中、当サイトでのみ公開中)</span></DT>
+            <UL>
+                <DT><A HREF="../downdata/V2M10201.EXE">
+                    <span class="sec01">DOWNLOAD (V2M10201.EXE)</span>
+                </A></DT>
+                <LI>Message-IDヘッダの無いデータの変換に失敗していたのを修正。</LI>
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.02.00  2006/11/23 -- <span class="highlight">(VECTOR公開中)</span></DT>
+            <UL>
+                <DT><A HREF="http://www.vector.co.jp/soft/win95/net/se415517.html" TARGET="_top">
+                    <span class="sec01">DOWNLOAD (VECTORにJump)</span>
+                </A></DT>
+                <LI>リリース</LI>
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.01.00  2006/10/15 --</DT>
+            <UL>
+                <LI>とりあえず完成</LI>
+            </UL>
+        </DL>
+        <BR CLEAR="ALL">
+    </DL>e
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>

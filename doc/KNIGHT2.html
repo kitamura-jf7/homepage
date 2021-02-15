@@ -1,0 +1,427 @@
+﻿<HTML>
+
+<HEAD>
+  <TITLE>KNIGHT2.000 - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+</HEAD>
+
+<BODY class="BG" LINK="#f0f0f0" VLINK="#00dd00" ALINK="#f0f0f0">
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    <IMG SRC="../img/KNIGHT2.gif" ALIGN="BOTTOM" BORDER="0">
+    KNIGHT2.000
+    </H1>
+    <BR CLEAR="ALL">
+    <A HREF="e_KNIGHT2.html">
+        English
+    </A>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">機能説明</span></DT>
+        <UL>
+            <LI>鑑賞用ツールです
+            <LI>あのＫＮＩＧＨＴ２○００の雰囲気をデスクトップに！
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><A HREF="KNIGHT2_screenshot.jpg" TARGET="_top">
+            <span class="sec01">画面イメージ</span>
+        </A></DT>
+        <UL>
+            <LI>私の2台目のマシンのデスクトップです。右下をご覧下さい
+        </UL>
+        <BR CLEAR="ALL">
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">主な設定項目</span></DT>
+        <DL>
+            <DT>待ち</DT>
+            <DL>
+                <DT>センサが端から折り返すときの「溜め」です</DT>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>位置</DT>
+            <DL>
+                <DT>自由</DT>
+                <DL>
+                    <DT>画面上の好きなところに配置できます</DT>
+                </DL>
+                <DT>上・下・左・右</DT>
+                <DL>
+                    <DT>画面の各端に張り付きます</DT>
+                </DL>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>表示</DT>
+            <DL>
+                <DT>ランダムイルミネーション</DT>
+                <DL>
+                    <DT>前景色をランダムに変更しながらスキャンします</DT>
+                </DL>
+                <DT>前景色</DT>
+                <DL>
+                    <DT>センサの色です</DT>
+                </DL>
+                <DT>前景色2</DT>
+                <DL>
+                    <DT>前景色以外の色を指定した場合は、前景色と前景色2の間でイルミネーションしながらスキャンします</DT>
+                </DL>
+                <DT>背景色</DT>
+                <DL>
+                    <DT>3Dを凸・凹表示とした時の背景色です</DT>
+                </DL>
+                <DT>3D</DT>
+                <DL>
+                    <DT>なし・凸・凹のいずれか。なしの時はブロック以外のところは背景画面を操作できます</DT>
+                </DL>
+                <DT>常に手前に表示</DT>
+                <DL>
+                    <DT>他のアプリケーションより常に前面に表示します</DT>
+                </DL>
+            </DL>
+            <BR CLEAR="ALL">
+
+            <DT>ロック</DT>
+            <DL>
+                <DT>自由位置・サイズの変更をできなくします</DT>
+            </DL>
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">操作</span></DT>
+        <UL>
+            <LI>実行はEXEファイルを開くだけです
+            <LI>右ボタンでメニューがでます
+            <LI>センサの端にマウスカーソルを合わせてサイズを変更することができます
+            <LI>設定内容はEXEファイルと同じフォルダにINIファイルを作成して保存します。ただし、INIファイルに書き出しできない場合は、レジストリを使用します
+            <DL>
+                <DL>
+                    <DT>HKEY_CURRENT_USER\Software\kitamura\KNIGHT2.000</DT>
+                </DL>
+            </DL>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">起動時オプション</span></DT>
+        <UL>
+            <LI>環境番号
+            <UL>
+                <LI>いくつめの環境設定値で起動するかを指定。指定なければ1から順番に使用
+                <LI>指定された番号が未登録の時は初期設定値を使用
+            </UL>
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">動作環境</span></DT>
+        <DL>
+            <DT>動作確認済み環境</DT>
+            <UL>
+                <LI>Windows2000Pro.
+                <LI>Windows2003Ent.評価build
+                <LI>Windows95/98
+                <LI>WindowsNT4.0Server
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT>開発環境</DT>
+            <UL>
+                <LI>Windows2000Professional(ビルド2195) + SP4
+                <LI>自作機、AMD Athlon XP 2500+、512MB
+                <LI>Delphi 6 Professional + Update Pack 1
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">その他・既知の問題点</span></DT>
+        <UL>
+            <LI>Windows95では3D表示を'なし'に設定すると操作を受け付けなくなってしまうため設定できない様にしています
+            <LI>実行時はシステムのアイドル時間を利用しています。レスポンスが悪くなることは無いと思います
+            <LI>アンインストールはアプリケーションの追加と削除から行って下さい
+            <LI>現時点のバージョンではKITT(キット)は搭載していないため、自動運転やおしゃべりはできません(^^
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">ライセンスについて</span></DT>
+        <UL>
+            <LI>本製品はフリーウエアです。使用に際してライセンス登録／費用などは一切必要ありません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">再配布について</span></DT>
+        <UL>
+            <LI>本製品の著作権は 北村 に属します
+            <LI>基本的に再配布は自由です。再配布の際は、当方で配布しているファイル形式をそのままで配布してください。配布の際の報告などは義務づけません
+            <LI>ただし、書籍など、何らかの「物」とともに配布する場合は、サンプルとして提供してください。事後でもかまいません
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">免責</span></DT>
+        <UL>
+            <LI>本製品の使用により生じるいかなる損害に対してもその法的根拠に関わらず作者は責任を負いません。これに不服がある場合は本製品を利用しないで下さい
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">連絡先</span></DT>
+        <UL>
+            <LI>リクエストや不具合など何かありましたらE-Mailにて&nbsp;
+                <A HREF="mailto:kitamura@jf7.so-net.ne.jp">
+                    kitamura@jf7.so-net.ne.jp
+                </A>
+                &nbsp;までお願いします
+        </UL>
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">履歴</span></DT>
+        <DL>
+            <DT> -- Ver 0.10.06  2004/04/21 -- <span class="highlight">(当サイトでのみ公開中)</span></DT>
+            <UL>
+                <DT><A HREF="../downdata/KN20106.exe">
+                    <span class="sec01">DOWNLOAD (KN20106.exe)</span>
+                </A></DT>
+                <LI>英語の説明文を少し修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.06  2003/10/02 -- <span class="highlight">(VECTOR公開中)</span></DT>
+            <UL>
+                <DT><A HREF="http://www.vector.co.jp/soft/win95/amuse/se119887.html" TARGET="_top">
+                    <span class="sec01">DOWNLOAD (VECTORにJump)</span>
+                </A></DT>
+                <LI>開き直すと設定した大きさより小さくなってしまう事があったのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.05  2003/02/05 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>説明文に設定項目の説明を追加
+                <LI>英語の説明文を作成
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.04  2003/02/04 --</DT>
+            <UL>
+                <LI>常に手前に表示のオプションを追加した
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.03  2003/02/03 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>iniファイルの書き出しに失敗するケースはレジストリを使用する様にした
+                <LI>Little Setup Builderによるセットアップイメージとした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.02  2003/02/03 -- (非公開)</DT>
+            <UL>
+                <LI>何らかの拍子に最前面で無くなることがあるので、クリックされたら最前面に表示しなおす様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.01  2003/02/02 -- (非公開)</DT>
+            <UL>
+                <LI>ブロック数の最大を50に増やした
+                <LI>メニュー上で設定した色がわかる様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.10.00  2003/02/02 -- (非公開)</DT>
+            <UL>
+                <LI>前景色2を追加し、前景色と前景色2との関係でイルミネーションする様にした
+                <LI>ランダムイルミネーションを追加
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.9.3  2003/01/31 -- (当サイトでのみ公開)</DT>
+            <UL>
+                <LI>日本語環境以外ではメニュー等を英語で表示する様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.9.2  2003/01/27 -- (非公開)</DT>
+            <UL>
+                <LI>上下左右に張り付く設定の場合、3Dが無しでも各ブロック毎にリージョンを設定しない様にした
+                <LI>3Dが無しで自由位置で表示していて、上下左右に張り付く設定に変更した時直前のリージョン設定が有効になって表示がおかしくなっていたのを修正した
+                <LI>設定内容をレジストリに保持するのをiniファイルに戻した
+                <LI>起動時にiniファイルが存在したらレジストリに取り込む処理を中止
+                <LI>現在の設定をiniファイルに出力する処理を中止
+                <LI>簡易インストーラによるセットアップイメージとした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.9.1  2003/01/26 -- (非公開)</DT>
+            <UL>
+                <LI>複数起動可能な様にした
+                <LI>起動時にiniファイルが存在したらレジストリに取り込みiniファイルを削除する様にした
+                <LI>現在の設定をiniファイルに出力できる様にした
+                <LI>Win95の時3Dの設定で「なし」を選択できない様にした
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.9.0  2003/01/25 -- (非公開)</DT>
+            <UL>
+                <LI>設定内容をレジストリに保持する様に変更
+                <BLOCKQUOTE>
+                    →Win2000以降ではフォルダの権限によりiniファイルへの書き出しが出来ずにエラーとなるため
+                </BLOCKQUOTE>
+                <LI>速度にやや速い・もう少し速い・もっと速いを追加
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.8.1  2003/01/24 -- (非公開)</DT>
+            <UL>
+                <LI>セットアップ画面の監視にsetupとSetupを追加
+                <LI>開発環境変更Windows2000Pro.ビルド2195+SP3
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.8.0  2002/07/07 --</DT>
+            <UL>
+                <LI>スタートアップへの登録機能を追加した
+                <LI>説明文を一部変更
+                <LI>連絡先変更
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.7.2  2001/10/28 --</DT>
+            <UL>
+                <LI>開発言語をDelphi6Pro.に変更した
+                <LI>どうやらKNIGHT2.000実行中はInstallShield系のセットアップで最初にファイルを展開するところでIDLE時間を消費してしまうとレスポンスが悪くなる様なので、セットアップ・セットアップ(半角)・SETUPのいずれかの画面が開いている時は処理をスキップする様にした。これにより、動きが止まって見えるがセットアップ画面が閉じて無くなれば動きが再開される
+                <LI>開発環境変更Windows2000Pro.ビルド2195+SP2
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.7.1  不明 --</DT>
+            <UL>
+                <LI>不明
+                <LI>開発環境変更Windows2000Pro.ビルド2195
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.7.0  2000/01/03 --</DT>
+            <UL>
+                <LI>タスクバー風に作用する様にし、上下左右に張り付けできる様にした
+                <LI>左右に表示の時は、ブロックを縦に並べる様にした
+                <LI>サイズ変更の方法を変更。Windowsらしくメッセージで処理する様にしたただし、引っかかり(?)が悪いときがある
+                <LI>バージョン情報の点滅を復活した
+                <LI>表示色設定ダイアログがメインフォームの背景に隠れてしまうのを再修正。表示色設定ダイアログ表示中はメイン画面を非表示とする
+                <LI>開発環境変更Windows2000 RC2ビルド2128
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.1  1999/11/28 --</DT>
+            <UL>
+                <LI>表示色設定ダイアログがメインフォームの背景に隠れてしまうのを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.6.0  1999/11/21 --</DT>
+            <UL>
+                <LI>点滅ブロック数をMIN(5)～MAX(35)まで増減できる様にした
+                <LI>上端もしくは下端にそろえやすい様に位置オプションを設けた影を若干長めにした
+                <LI>ブロック数を可変にしたため、バージョン情報の点滅はやめた
+                <LI>開発環境変更Windows2000β3ビルド2072
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.5.2  1999/11/05 --</DT>
+            <UL>
+                <LI>自己解凍KN2000.EXEが壊れていた(UNZIPでの解凍は可能)のを修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.5.1  1999/10/23 --</DT>
+            <UL>
+                <LI>残像の処理がスムースでないところがあったので修正
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.5.0  1999/10/16 --</DT>
+            <UL>
+                <LI>恥ずかしながら綴りを間違っていたので修正
+                <LI>説明資料を改変
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.4.1  1999/10/15 --</DT>
+            <UL>
+                <LI>３Ｄ表示の初期値を凹とした(Win95対策)
+            </UL>
+            <BR CLEAR="ALL">
+
+            <DT> -- Ver 0.4.0  1999/10/15 --</DT>
+            <UL>
+                <LI>暫定リリース
+            </UL>
+            <BR CLEAR="ALL">
+        </DL>
+        <BR CLEAR="ALL">
+        <BR CLEAR="ALL">
+
+        <DT><span class="sec01">おまけ</span></DT>
+        <BLOCKQUOTE>
+            <A HREF="http://www.viper.jp/knightrider.html" TARGET="_top">
+                <IMG SRC="../img/yoyo_banner.jpg" ALIGN="BOTTOM" BORDER="0">
+                KNIGHT RIDER (ＹＯＹＯ企画さん)
+            </A>
+            <BR>
+            どうぞご覧下さい(^^
+        </BLOCKQUOTE>
+        <BR CLEAR="ALL">
+
+    </DL>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+
+    <BR CLEAR="ALL">
+<script language="JavaScript">
+var rf;
+ref=escape(document.referrer)+"";
+if( (ref=="undefined") || (ref=="") ){
+ref="bookmark";}
+document.write(''+
+'<a target="_top" href="http://fc2.com">'+
+'<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?'+
+'id=91296'+
+'&page=2'+
+'&ref='+escape(ref)+
+'&x='+screen.width+
+'&y='+screen.height+
+'&cols='+screen.colorDepth+
+'&uniq=0'+
+'&cnt=1'+
+'"></a>');
+</script>
+<noscript>
+<div align="right"><a href="http://fc2.com/">無料</a><a href="http://fc2web.com/">ホームページ</a> <a href="http://blog.fc2.com/">ブログ</a>(<a href="http://blog.fc2.com/">blog</a>)</div>
+<img border=0 src="http://www.sugoicounter.com:10000/cgi-bin/counter.gif?id=91296&page=2&uniq=0&cnt=1">
+</noscript>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+</BODY>
+
+</HTML>
