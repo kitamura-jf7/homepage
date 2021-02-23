@@ -213,11 +213,56 @@
         <DT><span class="sec01">履歴</span></DT>
         <DL>
 
-            <DT> -- Ver 1.75.g2  2020/05/19 -- <span class="highlight">(当サイトでのみ公開中)</span></DT>
+            <DT> -- Ver 1.79.g5  2021/02/23 -- <span class="highlight">(当サイトでのみ公開中)</span></DT>
             <UL>
-                <DT><A HREF="../downdata/KiE175g2.exe">
-                    <span class="sec01">DOWNLOAD (KiE175g2.exe)</span>
+                <DT><A HREF="../downdata/KiE179g5.exe">
+                    <span class="sec01">DOWNLOAD (KiE179g5.exe)</span>
                 </A></DT>
+                <LI>メッセージダイアログをウインドウ中央に表示するようにした。
+                <LI>データベース取得結果から選択レコードの保存時、ユニコード文字が含まれる場合はUTF-16LE形式で作成するようにした。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.78.g5  2020/12/31 -- </DT>
+            <UL>
+                <LI>SQL実行時にキャレット位置のDDL文を取得する際、予約後を含む列名があるとDDL文が分割されてしまっていたのを修正。
+                <LI>実行DDL文を編集して実行することができなくなっていたのを修正。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.78.g4  2020/11/29 -- </DT>
+            <UL>
+                <LI>データベース取得結果で数値オーバーフローなどエラー時にはエラー内容をセルに表示するように修正。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.78.g3  2020/09/20 -- </DT>
+            <UL>
+                <LI>高DPIモニタで対応する括弧表示時のフォントサイズが対応できていなかったのを修正。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.78.g2  2020/09/17 -- </DT>
+            <UL>
+                <LI>キャレット位置の単語強調表示を描画が落ち着くまで待って行うようにした。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.77.g2  2020/08/09 -- </DT>
+            <UL>
+                <LI>DB接続中、30秒毎にサーバへ接続要求を行うようにした(効果は特になかったが、継続)。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.76.g2  2020/06/11 -- </DT>
+            <UL>
+                <LI>高DPIモニタ設定に対応。
+                <LI>Grep検索画面を固定サイズにした（DPI対応が上手くいかず^^;）。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.75.g2  2020/05/19 -- (当サイトでのみ公開)</DT>
+            <UL>
                 <LI>Grep検索ダイアログの高さを少し高くした。
             </UL>
 
