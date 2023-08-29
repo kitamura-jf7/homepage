@@ -6,7 +6,8 @@
 127.0.0.1 rtb.admost.com
 
 # line
-127.0.0.1 emxdgt.com
+127.0.0.1 cs.emxdgt.com
+127.0.0.1 e1.emxdgt.com
 127.0.0.1 uts-front.line-apps.com
 127.0.0.1 jp-col-tcp.nelo.linecorp.com
 127.0.0.1 gw.line.naver.jp
