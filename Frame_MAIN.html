@@ -26,7 +26,8 @@ function f_my_tool(desc, icon, link, newday, upday, ver, rank) {
     var img2 = "img/pt04-07.gif";
     document.write("<P>");
     document.write("<IMG SRC=\"", img1, "\" NAME=lk", wcnt_lk, " ALIGN=\"BOTTOM\" BORDER=\"0\" NATURALSIZEFLAG=\"3\" onMouseOver=\"this.src='", img2, "'\" onMouseOut=\"this.src='", img1, "'\">");
-    if (link.indexOf("http://") == -1) {
+    if ((link.indexOf("http://") === -1) && (link.indexOf("https://") === -1))
+    {
         document.write("<A HREF=\"", link, "\" onMouseOver=\"lk", wcnt_lk, ".src='", img2, "'\" onMouseOut=\"lk", wcnt_lk, ".src='", img1, "'\">");
     } else {
         document.write("<A HREF=\"", link, "\" TARGET=\"_top\" onMouseOver=\"lk", wcnt_lk, ".src='", img2, "'\" onMouseOut=\"lk", wcnt_lk, ".src='", img1, "'\">");
@@ -39,6 +40,10 @@ function f_my_tool(desc, icon, link, newday, upday, ver, rank) {
     document.write("</A>");
     document.write("&nbsp;(", rank, ")");
     document.write("&nbsp;Ver ", ver);
+    if ((newday === "") || (upday === ""))
+    {
+    }
+    else
     if ((newday.getFullYear()+"/"+newday.getMonth()+100+"/"+newday.getDate()+100) == (upday.getFullYear()+"/"+upday.getMonth()+100+"/"+upday.getDate()+100)) {
         f_chk_upnew(newday, "new")
     } else {
@@ -78,7 +83,7 @@ function f_link(desc, icon, desc2, link, img1, img2, topbot) {
     <DT><span class="sec01">ローカルイベント</span></DT>
     <UL>
         <LI>アマゾンギフト券を贈っていただけました。大変ありがとうございました
-        <LI>moto G31でBand3固定化できた
+        <LI>moto G31でBand3固定化できた　→その後、電池膨張のため、お亡くなりになりました
         <DT><A HREF="https://kitamura-jf7.blogspot.com/" TARGET="_top">
             https://kitamura-jf7.blogspot.com/
         </A></DT>
@@ -108,6 +113,38 @@ function f_link(desc, icon, desc2, link, img1, img2, topbot) {
     ライブラリ(自作ソフト)
     <BLOCKQUOTE>
         <SCRIPT TYPE="text/javascript"><!--
+            f_my_tool("BoxDrive Support Extension (firefox)"
+                    , ""
+                    , "https://addons.mozilla.org/en-US/firefox/addon/boxdrive-support-extension/"
+                    , ""
+                    , ""
+                    , "1.4.3"
+                    , "All Rights Reserved"
+                    )
+            f_my_tool("BoxDrive Support Extension (msedge)"
+                    , ""
+                    , "https://microsoftedge.microsoft.com/addons/detail/jhjmmhmpmeenkleggomcdempfkajlckk"
+                    , ""
+                    , ""
+                    , "1.4.3"
+                    , "All Rights Reserved"
+                    )
+            f_my_tool("Automatic Input Extension (firefox)"
+                    , ""
+                    , "https://addons.mozilla.org/en-US/firefox/addon/automatic-input-extension/"
+                    , ""
+                    , ""
+                    , "0.7.5"
+                    , "All Rights Reserved"
+                    )
+            f_my_tool("Automatic Input Extension (msedge)"
+                    , ""
+                    , "https://microsoftedge.microsoft.com/addons/detail/dbgjjjomegdajmnonocckkjbjgnegkao"
+                    , ""
+                    , ""
+                    , "0.7.5"
+                    , "All Rights Reserved"
+                    )
             f_my_tool("KiEditor"
                     , ""
                     , "doc/KiEditor.html"
@@ -267,9 +304,17 @@ function f_link(desc, icon, desc2, link, img1, img2, topbot) {
     私のお役立ちフリーツール紹介<BR CLEAR="ALL">
     <BLOCKQUOTE>
         <SCRIPT TYPE="text/javascript"><!--
-            f_link("Common SQL Environment（つみきソフトウェア作）", "img/cse_logo.png"
-                , "SQL開発環境ソフトウェアです。SQL発行が別スレッドで、「応答無し」なんてことにならないのが良いですね"
-                , "http://www.hi-ho.ne.jp/tsumiki/"
+//            f_link("Common SQL Environment（つみきソフトウェア作）", "img/cse_logo.png"
+//                , "SQL開発環境ソフトウェアです。SQL発行が別スレッドで、「応答無し」なんてことにならないのが良いですね"
+//                , "http://www.hi-ho.ne.jp/tsumiki/"
+//                , "img/pt04-07.gif", "img/pt04-10.gif", "P")
+            f_link("Paper Plane xUI（TORO作）", "https://toro.d.dooo.jp/image/thppx.jpg"
+                , "2画面で使えるファイラ。X68の頃のmintが良くて、Windows用の2画面ファイラを探し求めてたどり着きました"
+                , "https://toro.d.dooo.jp/index.html"
+                , "img/pt04-07.gif", "img/pt04-10.gif", "P")
+            f_link("RLogin（Copyright Culti）", "https://kmiya-culti.github.io/RLogin/image001.jpg"
+                , "SSHターミナルツール。以前はご多分に漏れずteratermを使ってましたが、乗り換えました。デフォルトで不便だったんですよｗ"
+                , "https://kmiya-culti.github.io/RLogin/"
                 , "img/pt04-07.gif", "img/pt04-10.gif", "P")
             f_link("FileZilla（Tim Kosse作）", "https://filezilla-project.org/images/logo.png"
               , "FTPサーバーとファイルのやり取りを行います。FFFTP→RootFTPから乗り換えました"
@@ -280,7 +325,7 @@ function f_link(desc, icon, desc2, link, img1, img2, topbot) {
     <BR CLEAR="ALL">
 
     <A NAME="lblinkdelphi"></A>
-    DELPHI<BR CLEAR="ALL">
+    DELPHI （今ではほとんどアクセスしませんが。。。そしてサイト自体なくなっているかもですが。。。）<BR CLEAR="ALL">
     <BLOCKQUOTE>
         <SCRIPT TYPE="text/javascript"><!--
 //            f_link("Dmitry Arefiev Home Page", ""
@@ -349,10 +394,10 @@ function f_link(desc, icon, desc2, link, img1, img2, topbot) {
                 , ""
                 , "http://www.art-box.tv/"
                 , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
-            f_link("ご縁カウンタ", "img/goen_btn_88.gif"
-                , ""
-                , "http://www.goencounter.com"
-                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
+//            f_link("ご縁カウンタ", "img/goen_btn_88.gif"
+//                , ""
+//                , "http://www.goencounter.com"
+//                , "img/pt04-07.gif", "img/pt04-02.gif", "H2")
             f_link("NASA", "img/hotnasa.gif"
                 , ""
                 , "http://www.nasa.gov/"
