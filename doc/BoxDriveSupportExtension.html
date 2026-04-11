@@ -1,0 +1,239 @@
+<HTML>
+
+<HEAD>
+  <TITLE>BoxDrive Support Extension - 北村のページ</TITLE>
+  <link rel="stylesheet" href="../_.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./_.css" type="text/css" media="all" />
+</HEAD>
+
+<BODY TEXT="#cccccc" BGCOLOR="#010303" LINK="#ffff00" VLINK="#ffff00" ALINK="#ffff00">
+
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    BoxDrive Support Extension
+    </H1>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">はじめに</span></DT>
+    <UL>
+        <LI>web上での操作よりはboxドライブ上で操作したい
+        <LI>boxドライブをメインに使うのに不便な点がある
+        <BR CLEAR="ALL">・フォルダ／ファイルの場所を連絡する際のパスの取得
+        <BR CLEAR="ALL">・フォルダ／ファイルの場所の連絡を受けた際のパス移動
+        <BR CLEAR="ALL">・お気に入りがboxドライブに統合されない／ショートカットが作れない
+        <BR CLEAR="ALL">・webページでタイムスタンプが見づらい
+        <BR CLEAR="ALL">・サイドバーが初期表示されるが、今の用途ではあまり意味がない。にも関わらず、フォルダ／ファイルが省略される
+        <BR CLEAR="ALL">・webページでファイル名の変更で拡張子が変更できない
+        <LI>これらの不便な点を少しでも解消する目的で
+        <BR CLEAR="ALL">boxドライブのサポートツールを作成
+    </UL>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">動作に必要なもの</span></DT>
+    <UL>
+        <LI>boxドライブの実行
+        <LI>ブラウザへの拡張機能の追加・有効化
+        <LI>常駐アプリの実行
+    </UL>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">インストール</span></DT>
+    <UL>
+        <LI>firefox：当サイトからxpiファイルをダウンロードで、アドオンを追加
+            <DT><A HREF="downdata/boxdrive-ext/00ccb0cbde5141518362-1.4.9.xpi">
+                <span class="sec01">xpi DOWNLOAD for firefox</span>
+            </A></DT>
+        <LI>chrome：当サイトからzipファイルをダウンロード、適当なフォルダへ解凍し、chromeで拡張機能の管理を開いてパッケージ化されていない拡張機能を読み込むから、フォルダを選択
+            <DT><A HREF="downdata/boxdrive-ext/boxdrive-ext1_4_9_c.zip">
+                <span class="sec01">zip DOWNLOAD for chrome</span>
+            </A></DT>
+        <LI>msedge：MS Edgeアドオンサイトから追加
+            <DT><A HREF="https://microsoftedge.microsoft.com/addons/detail/jhjmmhmpmeenkleggomcdempfkajlckk">
+                <span class="sec01">BoxDrive Support Extension (msedge) - MS Edgeアドオンサイト</span>
+            </A></DT>
+        <LI>常駐機能
+            <DT><A HREF="https://github.com/kitamura-jf7/BoxDriveOpener/tree/main/bin/Release">
+                <span class="sec01">BoxDriveOpener.exeのダウンロード<br>https://github.com/kitamura-jf7/BoxDriveOpener/tree/main/bin/Release</span>
+            </A></DT>
+            BoxDriveOpener.exe、LiteDB.dll、System.Buffers.dllの3ファイルをダウンロード、適当なフォルダへコピーし、BoxDriveOpener.exeのショートカットをスタートアップへ登録するなどで常駐起動することで、BoxDrive Support Extensionと連携して動作します
+            <br>　（初回は手動で起動するか、PCへ再ログインしてください）
+            <br>BoxDriveOpener.exeの初回起動時に.boxlnkの拡張子関連付け登録を行います（キャンセル可）
+            <br>
+            <br>以後、BoxDriveOpener.exeが更新されていた場合は、手動で置き換えてください
+            <br>
+            <br>BoxDriveOpener.iniを編集することで、エクスプローラではなくお気に入りのファイラー／ブラウザで開くようにできる場合があります
+            <br>BoxDriveOpener.iniを削除して再起動すると初期設定に戻ります
+    </UL>
+    <BR CLEAR="ALL">
+
+
+    <DT><span class="sec01">画面イメージ</span></DT>
+    <UL>
+        <IMG SRC="BoxDrive-ext1.png" ALIGN="BOTTOM" BORDER="0"><BR>
+    </UL>
+    <UL>
+        <IMG SRC="BoxDrive-ext2.png" ALIGN="BOTTOM" BORDER="0"><BR>
+    </UL>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">web機能説明</span></DT>
+    <p>①「CC」</p>
+    <UL>
+        <LI>該当フォルダ／ファイルのboxURL＋boxﾄドライブパスをクリップボードにコピー
+            <BR CLEAR="ALL">※コピーされる値の例
+            <BR CLEAR="ALL">https://app.box.com/folder/123456789012
+            <BR CLEAR="ALL">file:%USERPROFILE%/Box/boxdrive-ext拡張機能
+            <BR CLEAR="ALL">※注意点
+            <BR CLEAR="ALL">「 | Powered by Box」は付きません
+    </UL>
+
+    <p>②「>>>」</p>
+    <UL>
+        <LI>該当フォルダ／ファイルのboxドライブパスを開く
+    </UL>
+
+    <p>③「Create boxSC」</p>
+    <UL>
+        <LI>エクスプローラのショートカットの作成のように、該当フォルダ／ファイルのboxURLをショートカットとして作成
+        <LI>使用したい場合、常駐アプリ画面で「boxショートカットの作成を使う」にチェック
+        <LI>作成直後、作成された.boxlnkファイルのboxドライブが開くので、適当なところへ移動
+        <LI>.boxlnkファイルを開く（実行する）とboxURLのboxドライブパスを開くことができる。常駐アプリの初回起動時、.boxlnk拡張子関連付け（レジストリ）登録を行う必要あり
+            <BR CLEAR="ALL">※次のレジストリを使用
+            <BR CLEAR="ALL">[HKEY_CLASSES_ROOT\BoxDriveOpener]
+            <BR CLEAR="ALL">[HKEY_CLASSES_ROOT\.boxlnk]
+        <LI>.boxlnkファイルはboxドライブ上で他のユーザとも共有できる。他のユーザが常駐アプリ未使用時は、.boxlnkファイルをメモ帳等で参照してもらうことでboxURL情報が確認可能
+            <BR CLEAR="ALL">※.boxlnkファイルの内容の例
+            <BR CLEAR="ALL">https://app.box.com/folder/123456789012
+            <BR CLEAR="ALL">/Box/boxdrive-ext拡張機能
+            <BR CLEAR="ALL">※裏技的には、手作成で複数のURLやパス情報を含めることができる（はず）
+    </UL>
+
+    <p>④「link>>>」</p>
+    <UL>
+        <LI>該当boxショートカットファイルのリンク先boxドライブパスを開く
+    </UL>
+
+    <p>⑤「link>>>box」</p>
+    <UL>
+        <LI>該当boxショートカットファイルのリンク先URLをboxで開く
+    </UL>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">常駐機能</span></DT>
+    <p>web機能の実行</p>
+    <p>クリップボード操作を監視し、次の動作を実行</p>
+    <UL>
+        <LI>クリップボードにコピー
+        <UL>
+            <LI>boxURLとboxドライブパスを両方
+                <BR CLEAR="ALL">CTRL+C・C（連続2回）：選択しているboxURLのboxドライブパスをクリップボードへコピー（web機能①と同じ）
+            <LI>boxURL←→boxドライブパスを逆転
+                <BR CLEAR="ALL">CTRL+C・C・C（連続3回）：選択しているboxURLのboxドライブパスをクリップボードへコピー、または、選択しているboxドライブパスのboxURLをクリップボードへコピー
+        </UL>
+        <LI>開く
+        <UL>
+            <LI>boxドライブで開く
+                <BR CLEAR="ALL">CTRL+C・C・C・C（連続4回）：選択しているboxURLのboxドライブパスを開く（web機能②と同じ）。BoxURL以外を選択している時はそのURL／パスを開く
+            <LI>ブラウザで開く
+                <BR CLEAR="ALL">CTRL+C・C・C・C・C（連続5回）：選択しているURL／boxドライブパスをブラウザで開く。boxドライブ以外のパスを選択している時はそのパスを開く
+        </UL>
+    </UL>
+    <p>コマンドライン引数を指定して実行</p>
+    <UL>
+        <LI>引数で指定されたboxURLのboxドライブパスを開く（web機能②と同じ）。BoxURL以外が指定されている時はそのURL／パスを開く
+        <LI>http／htmlファイルと紐付けるとURLクリックでboxドライブを開くこともできる
+    </UL>
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">補足／注意事項</span></DT>
+    <UL>
+        <LI>非公式であり、公式（boxWEBページ）の改変により動作しなくなる可能性あり
+        <LI>常駐アプリがリクエストを待機し、拡張機能から常駐アプリに向けてリクエストしている。よって、どちらも起動状態である必要あり
+        <LI>一度開いたURLのパス情報を常駐アプリ側で保持。保持していないURLでは一度boxWEBページが自動で開かれる
+        <LI>エクセル・ワードでのクリップボード操作とやや相性が悪い（気がする）
+        <LI>上手く動作していなさそうなら常駐アプリを再起動してみる。繰り返し異常動作しているときは常駐アプリを停止／拡張機能を無効化して止める
+    </UL>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">FAQ</span></DT>
+    <UL>
+        <LI>boxフォルダ／ファイルの場所を連絡する
+            <UL>
+                <LI>これまで
+                    <BR CLEAR="ALL">連絡したいフォルダ／ファイルをブラウザで開いて、アドレス欄をクリップボードにコピーする
+                    <BR CLEAR="ALL">→クリップボードにURL他がコピーされる
+                <LI>boxdrive-ext拡張機能では
+                    <BR CLEAR="ALL">連絡したいフォルダ／ファイルをboxドライブ（エクスプローラ）で選択して、CTRL+C・C（連続2回）を押す
+                    <BR CLEAR="ALL">→クリップボードにboxURL＋boxドライブパスがコピーされる
+                    <BR CLEAR="ALL">または
+                    <BR CLEAR="ALL">連絡したいフォルダ／ファイルをブラウザで開いて、「cc」ボタンを押す
+                    <BR CLEAR="ALL">→クリップボードにboxURL＋boxドライブパスがコピーされる
+                    <BR CLEAR="ALL">または
+                    <BR CLEAR="ALL">連絡したいフォルダ／ファイルをboxドライブ（エクスプローラ）で選択して、CTRL+C・C・C（連続3回）を押す
+                    <BR CLEAR="ALL">→クリップボードにboxURLまたはboxドライブパスの逆値がコピーされる
+            </UL>
+        <LI>boxURLの連絡が届いた
+            <UL>
+                <LI>これまで
+                    <BR CLEAR="ALL">届いたURLを（１つずつ）クリック
+                    <BR CLEAR="ALL">→ブラウザが開く
+                <LI>boxdrive-ext拡張機能では
+                    <BR CLEAR="ALL">届いたURLを複数まとめて選択状態にして、CTRL+C・C・C・C（連続4回）を押す
+                    <BR CLEAR="ALL">→boxドライブが複数開く
+                    <BR CLEAR="ALL">または
+                    <BR CLEAR="ALL">届いたURLを複数まとめて選択状態にして、CTRL+C・C・C・C・C（連続5回）を押す
+                    <BR CLEAR="ALL">→ブラウザが複数開く
+            </UL>
+        <LI>boxドライブパスの連絡が届いた
+            <UL>
+                <LI>これまで
+                    <BR CLEAR="ALL">届いたboxドライブパスを（必要であれば個人のboxフォルダパスに置き換えて）選択・クリップボードにコピーして、エクスプローラのアドレス欄に貼り付ける
+                    <BR CLEAR="ALL">→フォルダ名のとき、PCにboxドライブパスが見つかれば、パスが開く
+                    <BR CLEAR="ALL">→ファイル名のとき、PCにboxドライブパスが見つかれば、アプリが開く
+                <LI>boxdrive-ext拡張機能では
+                    <BR CLEAR="ALL">届いたboxドライブパスを複数まとめて選択状態にしてCTRL+C・C・C・C（連続4回）を押す
+                    <BR CLEAR="ALL">→boxドライブが複数開く
+                    <BR CLEAR="ALL">または
+                    <BR CLEAR="ALL">届いたURLを複数まとめて選択状態にして、CTRL+C・C・C・C・C（連続5回）を押す
+                    <BR CLEAR="ALL">→一度boxWEBで開いたことがあるboxドライブパスなら、ブラウザが複数開く
+                    <BR CLEAR="ALL">→一度もboxWEBで開いたことがないboxドライブパスなら、boxドライブが複数開く
+            </UL>
+        <LI>ファイル名の拡張子を変更する
+        <BR CLEAR="ALL">boxドライブを開いて、ファイル名を変更する
+    </UL>
+    <BR CLEAR="ALL">
+
+    <DT><span class="sec01">履歴</span></DT>
+<br>1.4.9 2026/04/07
+<br>　　ファイルを開いた時のファイル名情報欄のclass名が変更されていた。ちょくちょく変更が入る、どうしたものか
+<br>1.4.8 2026/04/05
+<br>　　TOPフォルダの判定が出来なくなっていたのを修正
+<br>1.4.7 2026/03/31
+<br>　　ファイルを開いた時のファイル名情報が取得できなくなっていたのを修正。バージョンが付くと取得できていなかった
+<br>1.4.6 2026/03/26
+<br>　　ファイルを開いた時の親フォルダ情報が取得できなくなっていたのを修正。a class="folder-name"およびclass="preview-header-title-section"が変わったようす
+<br>1.4.5 2026/02/06
+<br>　　フォルダ階層が取得できなくなっていたのを修正。class="ItemListBreadcrumb"の子の階層が変わったようす
+<br>1.4.4 2026/02/04
+<br>　　フォルダ階層が取得できなくなっていたのを修正。class="ItemListBreadcrumb-list"が複数発生するようになっていた
+<br>1.4.3 2025/11/18
+<br>　　アイコン追加
+<br>1.3.3 2025/11/14
+<br>　　manifest修正（firefoxとedgeで共用できないところ）
+<br>1.3.2 2025/11/13
+<br>　　ファイルを初回開いた際に親フォルダ情報も合わせて取得するように変更
+<br>1.2.2 2025/10/10
+<br>　　TOPフォルダへの対応ができていなかったのを修正
+<br>1.2.1 2025/10/09
+<br>　　フォルダリストのTOP表記が「すべてのファイル」から「ファイル」に変わったことへの対応
+<br>1.1.1 2025/07/09
+<br>　　フォルダパス情報取得のため自動でboxwebを開いた際、情報取得前に不正な参照箇所があり、情報取得に至っていなかったのを修正
+<br>　　フォルダパス情報取得のタイミング調整
+<br>　　firefox版で自動更新情報を設定
+<br>1.0.0 初期リリース
+
+</BODY>
+
+</HTML>
