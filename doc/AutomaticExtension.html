@@ -7,34 +7,40 @@
 </HEAD>
 
 <BODY TEXT="#cccccc" BGCOLOR="#010303" LINK="#ffff00" VLINK="#ffff00" ALINK="#ffff00">
-
-<BR CLEAR="ALL">
-<A NAME="lbtop"></A>
-<H1>
-Automatic Extension
-</H1>
-<BR CLEAR="ALL">
-
-<DT><A HREF="downdata/autoinput-ext/79c0a5efd48742669128-0.14.11.xpi">
-    <span class="sec01">xpi DOWNLOAD for firefox</span>
-</A></DT>
-<DT><A HREF="downdata/autoinput-ext/buildchrome_0_14_11.zip">
-    <span class="sec01">zip DOWNLOAD for chrome</span>
-</A></DT>
-<DT><A HREF="https://microsoftedge.microsoft.com/addons/detail/dbgjjjomegdajmnonocckkjbjgnegkao">
-    <span class="sec01">Automatic Input Extension (msedge) - MS Edgeアドオンサイト</span>
-</A></DT>
-<BR CLEAR="ALL">
-
-
-<DT><span class="sec01">設定画面イメージ</span></DT>
-<UL>
-    <IMG SRC="autoinput-ext2_0_5_4.png" ALIGN="BOTTOM" BORDER="0"><BR>
-</UL>
-<BR CLEAR="ALL">
-<BR CLEAR="ALL">
-
-
+    
+    <BR CLEAR="ALL">
+    <A NAME="lbtop"></A>
+    <H1>
+    Automatic Extension
+    </H1>
+    <BR CLEAR="ALL">
+    <DL>
+        <DT><span class="sec01">機能説明</span></DT>
+        <UL>
+            <LI>特定条件に合致する画面に対して登録した文字列の入力、ボタン押下、リンクを開くなどを自動で行う
+        </UL>
+        <BR CLEAR="ALL">
+    
+        <DT><A HREF="downdata/autoinput-ext/79c0a5efd48742669128-0.18.12.xpi">
+            <span class="sec01">xpi DOWNLOAD for firefox</span>
+        </A></DT>
+        <DT><A HREF="downdata/autoinput-ext/buildchrome_0_18_12.zip">
+            <span class="sec01">zip DOWNLOAD for chrome</span>
+        </A></DT>
+        <DT><A HREF="https://microsoftedge.microsoft.com/addons/detail/dbgjjjomegdajmnonocckkjbjgnegkao">
+            <span class="sec01">Automatic Input Extension (msedge) - MS Edgeアドオンサイト</span>
+        </A></DT>
+        <BR CLEAR="ALL">
+        
+        
+        <DT><span class="sec01">設定画面イメージ</span></DT>
+        <UL>
+            <IMG SRC="autoinput-ext2_0_18_12.png" ALIGN="BOTTOM" BORDER="0"><BR>
+        </UL>
+        <BR CLEAR="ALL">
+        <BR CLEAR="ALL">
+        
+    
 <p>[タイトル]の説明</p>
 <pre style="white-space: pre-wrap;">入力処理を実施する際の条件判定を行います
 [タイトル]に指定がある場合のみ判定します
@@ -43,25 +49,35 @@ Automatic Extension
 <br />
 <p>[条件セレクタ]と[判定値]の説明</p>
 <pre style="white-space: pre-wrap;">入力処理を実施する際の条件判定を行います
-[条件セレクタ]に指定がある場合のみ判定します
-querySelectorAll([条件セレクタ])で取得できたエレメントのvalue値、checked値もしくはtextContent値が[判定値]と一致する場合のみ、入力処理を行います
+[条件セレクタ]に指定がある場合のみ判定します。条件が複数ある場合、条件と判定値をそれぞれ改行で区切って指定します
+querySelectorAll([条件セレクタ])またはevaluate([条件セレクタ], XPathResult.ORDERED_NODE_ITERATOR_TYPE)で取得できたエレメントのvalue値、checked値もしくはtextContent値が[判定値]と一致する場合のみ、入力処理を行います
 [条件セレクタ]の探索はページのdocumentおよびdocument.querySelectorAll('frame, iframe')で取得できたすべての.contentDocumentに対して行われます。ただし、[条件セレクタ]が取得できた最初のdocumentのみが対象となります※取得できた最初のdocument以外にも[条件セレクタ]が含まれる場合、それらは対象になりません
+※セレクタの探索については、以下も同様
+</pre>
+<br />
+<p>[終了条件セレクタ]と[終了判定値]の説明</p>
+<pre style="white-space: pre-wrap;">入力処理を完了する際の条件判定を行います
+[終了条件セレクタ]に指定がある場合のみ判定します。条件が複数ある場合、条件と判定値をそれぞれ改行で区切って指定します
+[終了条件セレクタ]で取得できたエレメントのvalue値、checked値もしくはtextContent値が[終了判定値]と一致しない場合のみ、入力処理を繰り返します
 </pre>
 <br />
 <p>[セレクタ]と[入力文字列]の説明</p>
 <pre style="white-space: pre-wrap;">[セレクタ]が空の場合、
-[入力文字列]が「{close}」の場合、window.close()を実行します
-[入力文字列]が「{css XYZ}」に該当する場合、[URL]に一致するページヘッダにCSSとしてXYZを挿入します
-例えば、[URL]にamazon prime、[入力文字列]に「{css .vsc-controller {height: unset !important;}}」とすると、vsc-controllerを使ってても画面が観れるようになります
+[入力文字列]が「{BLOCK}」の場合、[URL]をdeclarativeNetRequestに追加します
+[入力文字列]が「{CLOSE}」の場合、window.close()を実行します
+[入力文字列]が「{BACK n}」の場合、history.go(-n)を実行します
+[入力文字列]が「{CSS xyz}」に該当する場合、[URL]に一致するページヘッダにCSSとしてxyzを挿入します
+例えば、[URL]にamazon prime、[入力文字列]に「{CSS .vsc-controller {height: unset !important;}}」とすると、vsc-controllerを使ってても画面が観れるようになります
 
 [セレクタ]が空以外の場合、
 querySelectorAll([セレクタ])で取得できたエレメントに対して、入力処理を行います
 [セレクタ]の探索はページのdocumentおよびdocument.querySelectorAll('frame, iframe')で取得できたすべての.contentDocumentに対して行われます。ただし、[セレクタ]が取得できた最初のdocumentのみが対象となります※取得できた最初のdocument以外にも[セレクタ]が含まれる場合、それらは対象になりません
-querySelectorAll([セレクタ])で取得できたエレメントがinput/TextAreaタグでタイプがcheckbox/radioの場合、.focus()の実行と[入力文字列]にtrue/falseがあれば.checkedに代入します
-querySelectorAll([セレクタ])で取得できたエレメントがinput/TextAreaタグでタイプがcheckbox/radio以外の場合、.value値が空白であれば.focus()の実行と.valueに[入力文字列]を代入します
-querySelectorAll([セレクタ])で取得できたエレメントがaタグの場合、[入力文字列]に{go}/{click}/{open}があれば.focus()の実行と.hrefに遷移します
-[入力文字列]に{focus}があれば、querySelectorAll([セレクタ])で取得できたエレメントの.focus()を実行します
-[入力文字列]に{click}があれば、querySelectorAll([セレクタ])で取得できたエレメントの.focus()と.click()を実行します
+[セレクタ]で取得できたエレメントがinput/TextAreaタグでタイプがcheckbox/radioの場合、.focus()の実行と[入力文字列]にtrue/falseがあれば.checkedに代入します
+[セレクタ]で取得できたエレメントがinput/TextAreaタグでタイプがcheckbox/radio以外の場合、<del>.value値が空白であれば</del>.focus()の実行と.valueに[入力文字列]を代入します
+[セレクタ]で取得できたエレメントがaタグの場合、[入力文字列]に{GO}/{CLICK}/{OPEN}があれば.focus()の実行と.hrefに遷移します
+[入力文字列]に{FOCUS}があれば、[セレクタ]で取得できたエレメントの.focus()を実行します
+[入力文字列]に{CLEAR}があれば、[セレクタ]で取得できたエレメントの値に""を代入します
+[入力文字列]に{CLICK}があれば、[セレクタ]で取得できたエレメントの.focus()と.click()を実行します
 </pre>
 <br />
 <p>キー入力の説明</p>
@@ -134,88 +150,148 @@ PrintScreenキーは、アクティブウィンドウのスナップショット
                   書式を省略した場合は、HH:MM:SS.ZZZとします
 </pre>
 
-<p>履歴</p>
-<dt> -- Ver 0.14.10 2026/05/23 --</dt>
-<ul>
-    <li>[入力文字列]に{close}を指定可能にした</li>
-    <li>オプション画面を上下に分割した</li>
-</ul>
-<br />
-<dt> -- Ver 0.13.10 2026/05/22 --</dt>
-<ul>
-    <li>条件セレクタと判定値が複数行あるとき、行単位に判定して全行一致（and）の判定に変更</li>
-</ul>
-<br />
-<dt> -- Ver 0.12.10  2026/04/08 --</dt>
-<ul>
-    <li>CSS挿入時ログを追加</li>
-</ul>
-<br />
-<dt> -- Ver 0.12.9  2026/04/05 --</dt>
-<ul>
-    <li>codex指摘箇所のコード修正。機能的な修正は無し</li>
-    <li>デバッグログをローカルサーバへ転送していたコードを排除</li>
-</ul>
-<br />
-<dt> -- Ver 0.12.8  2026/04/03 --</dt>
-<ul>
-    <li>amazon prime視聴対策のためcssを削除</li>
-    <li>[入力文字列]に{css XYZ}を指定可能にした</li>
-</ul>
-<br />
-<dt> -- Ver 0.11.8  2026/02/15 --</dt>
-<ul>
-    <li>オプション画面の実装でスタイルの対応をCSSファイルに分離</li>
-    <li>バックアップの形式を変更　※以前の形式からでも復元可能</li>
-</ul>
-<details>
-    <summary>その他の履歴</summary>
-    <br />
-    <dt> -- Ver 0.10.7  2026/02/15 --</dt>
-    <ul>
-        <li>amazon prime視聴対策のためcssを追加</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.9.7  2026/02/08 --</dt>
-    <ul>
-        <li>オプション表示時にローカル側のメッセージ欄がクリア出来ていなかったのを修正</li>
-        <li>オプション画面の実装でReactの作法に反していた構文を見直し</li>
-        <li>Sync編集欄とLocal編集欄を互いに転記できるようにした</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.8.6  2026/02/07 --</dt>
-    <ul>
-        <li>追加／更新後、編集した行へスクロールするようにした</li>
-        <li>並び順で値が短いものが後ろになっていたのを前にくるように修正</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.7.5  2025/12/18 --</dt>
-    <ul>
-        <li>セレクタがcheckboxとradioで判定値の判定が出来ていなかったのをchecked値で判定出来るように修正</li>
-        <li>入力文字列で{clear}に続けて{clear}abc（強制的にabcに置き換え）などが出来るようにした</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.6.4  2025/12/16 --</dt>
-    <ul>
-        <li>コピー追加ボタンを追加。登録済みの明細の内容を編集欄にコピーして、追加ができるようにした</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.5.4  2025/11/18 --</dt>
-    <ul>
-        <li>ボタンがinputタグの時、[入力文字列]に{focus}を指定して.focus()のみ実行できるようにした</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.4.4  2025/11/15 --</dt>
-    <ul>
-        <li>一時的な読み込みではfirefoxとmsedgeでmanifestを共通にしても実行できていたが、各サイトのアドオン登録ではエラーとなるため、manifestを分けて作成することにした</li>
-    </ul>
-    <br />
-    <dt> -- Ver 0.3.4  2025/11/15 --</dt>
-    <ul>
-        <li>初期リリース</li>
-    </ul>
-</details>
+    <p>履歴</p>
 
+    <dt> -- Ver 0.18.12 2026/06/06 --</dt>
+    <ul>
+        <li>設定値の一部をURLパラメータ値で置き換えて実行できるようにした{URLPARAM xx}</li>
+        <li>各セレクタ設定に{UA}の指定で、実行時window.navigator.userAgent.toLowerCase()の値を判定できるようにした</li>
+        <li>各セレクタ設定に{BROWSER}の指定で、実行時に判別したブラウザ名（ie/edge/chrome/safari/firefox/opera）を判定できるようにした</li>
+        <li>[入力文字列]に{BLOCK}の指定で、urlをdeclarativeNetRequestにブロック対象として追加するようにした</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.17.12 2026/06/02 --</dt>
+    <ul>
+        <li>設定一覧項目タイトルの修正</li>
+        <li>項目説明の修正</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.17.11 2026/06/01 --</dt>
+    <ul>
+        <li>[入力文字列]の{back}を回数指定可能にした{back n}</li>
+        <li>[入力文字列]の実行時ログを追加</li>
+        <li>デバッグレベルを追加</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.16.11 2026/05/31 --</dt>
+    <ul>
+        <li>セレクタをXPathでも検索できるようにした</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.15.11 2026/05/30 --</dt>
+    <ul>
+        <li>終了判定条件を追加。設定時、条件成立まで繰り返す</li>
+        <li>オプション画面の列幅調整</li>
+        <li>[入力文字列]に{back}を指定可能にした</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.14.11 2026/05/23 --</dt>
+    <ul>
+        <li>オプション画面の分割比率調整</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.14.10 2026/05/23 --</dt>
+    <ul>
+        <li>[入力文字列]に{close}を指定可能にした</li>
+        <li>オプション画面を上下に分割した</li>
+    </ul>
+    <br />
+    <dt> -- Ver 0.13.10 2026/05/22 --</dt>
+    <ul>
+        <li>条件セレクタと判定値が複数行あるとき、行単位に判定して全行一致（and）の判定に変更</li>
+    </ul>
+    <details>
+        <summary>その他の履歴</summary>
+        <br />
+        <dt> -- Ver 0.12.10  2026/04/08 --</dt>
+        <ul>
+            <li>CSS挿入時ログを追加</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.12.9  2026/04/05 --</dt>
+        <ul>
+            <li>codex指摘箇所のコード修正。機能的な修正は無し</li>
+            <li>デバッグログをローカルサーバへ転送していたコードを排除</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.12.8  2026/04/03 --</dt>
+        <ul>
+            <li>amazon prime視聴対策のためcssを削除</li>
+            <li>[入力文字列]に{css XYZ}を指定可能にした</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.11.8  2026/02/15 --</dt>
+        <ul>
+            <li>オプション画面の実装でスタイルの対応をCSSファイルに分離</li>
+            <li>バックアップの形式を変更　※以前の形式からでも復元可能</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.10.7  2026/02/15 --</dt>
+        <ul>
+            <li>amazon prime視聴対策のためcssを追加</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.9.7  2026/02/08 --</dt>
+        <ul>
+            <li>オプション表示時にローカル側のメッセージ欄がクリア出来ていなかったのを修正</li>
+            <li>オプション画面の実装でReactの作法に反していた構文を見直し</li>
+            <li>Sync編集欄とLocal編集欄を互いに転記できるようにした</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.8.6  2026/02/07 --</dt>
+        <ul>
+            <li>追加／更新後、編集した行へスクロールするようにした</li>
+            <li>並び順で値が短いものが後ろになっていたのを前にくるように修正</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.7.5  2025/12/18 --</dt>
+        <ul>
+            <li>セレクタがcheckboxとradioで判定値の判定が出来ていなかったのをchecked値で判定出来るように修正</li>
+            <li>入力文字列で{clear}に続けて{clear}abc（強制的にabcに置き換え）などが出来るようにした</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.6.4  2025/12/16 --</dt>
+        <ul>
+            <li>コピー追加ボタンを追加。登録済みの明細の内容を編集欄にコピーして、追加ができるようにした</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.5.4  2025/11/18 --</dt>
+        <ul>
+            <li>ボタンがinputタグの時、[入力文字列]に{focus}を指定して.focus()のみ実行できるようにした</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.4.4  2025/11/15 --</dt>
+        <ul>
+            <li>一時的な読み込みではfirefoxとmsedgeでmanifestを共通にしても実行できていたが、各サイトのアドオン登録ではエラーとなるため、manifestを分けて作成することにした</li>
+        </ul>
+        <br />
+        <dt> -- Ver 0.3.4  2025/11/15 --</dt>
+        <ul>
+            <li>初期リリース</li>
+        </ul>
+    </details>
+    </DL>
+    
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    
+    <A HREF="../Frame_MAIN.html">
+        <span class="sec99">戻る</span>
+        <BR CLEAR="ALL">
+    </A>
+    
+    <BR CLEAR="ALL">
+    <BR CLEAR="ALL">
+    
+    <span class="sec99">
+    いきなりこのページにきてしまった人は、
+        <A HREF="../index.html" TARGET="_parent">
+            ここからTOPへ
+        </A>
+    どうぞ<BR CLEAR="ALL">
+    </span>
+    
+    <BR CLEAR="ALL">
 </BODY>
 
 </HTML>
