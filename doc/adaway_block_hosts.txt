@@ -28,7 +28,7 @@
 127.0.0.1 a.line.me
 127.0.0.1 square-api.line.me
 ##127.0.0.1 yuki-cdn.line-apps.com
-##127.0.0.1 legy-jp.line-apps.com
+127.0.0.1 legy-jp.line-apps.com
 
 # ??
 127.0.0.1 aa027xpjkk9h5cs2x.api.met.no
