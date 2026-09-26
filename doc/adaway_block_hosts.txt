@@ -23,12 +23,11 @@
 127.0.0.1 voom-assets.line-scdn.net
 127.0.0.1 voom-obs.line-scdn.net
 127.0.0.1 ch-news.line-apps.com
-127.0.0.1 obs.line-scdn.net
 127.0.0.1 scdn.line-apps.com
-127.0.0.1 a.line.me
 127.0.0.1 square-api.line.me
-##127.0.0.1 yuki-cdn.line-apps.com
+127.0.0.1 yuki-cdn.line-apps.com
 127.0.0.1 legy-jp.line-apps.com
+127.0.0.1 line-apps.com.akadns.net
 
 # ??
 127.0.0.1 aa027xpjkk9h5cs2x.api.met.no
