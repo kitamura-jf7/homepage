@@ -14,6 +14,7 @@
 127.0.0.1 a.line.me
 127.0.0.1 crs-event.line.me
 127.0.0.1 crs-hometab-event.line.me
+127.0.0.1 ad.line-scdn.net
 127.0.0.1 obs.line-scdn.net
 127.0.0.1 profile.line-scdn.net
 ##127.0.0.1 stickershop.line-scdn.net
@@ -28,6 +29,7 @@
 127.0.0.1 yuki-cdn.line-apps.com
 127.0.0.1 legy-jp.line-apps.com
 127.0.0.1 line-apps.com.akadns.net
+127.0.0.1 im.c.yimg.jp
 
 # ??
 127.0.0.1 aa027xpjkk9h5cs2x.api.met.no
