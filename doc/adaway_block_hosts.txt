@@ -30,6 +30,7 @@
 127.0.0.1 legy-jp.line-apps.com
 127.0.0.1 line-apps.com.akadns.net
 127.0.0.1 im.c.yimg.jp
+127.0.0.1 ly.my.sentry.io
 
 # ??
 127.0.0.1 aa027xpjkk9h5cs2x.api.met.no
