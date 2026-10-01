@@ -1,4 +1,4 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name           カスタムCSS挿入
 // @description    特定のサイトに自作のCSSを適応します。
 // @include        https://*.livedoor.blog/*
@@ -12,4 +12,5 @@
     style.type = 'text/css';
     style.appendChild(document.createTextNode(css));
     document.head.appendChild(style);
+    alert('test')
 })();
