@@ -47,3 +47,4 @@
 127.0.0.1 c.amazon-adsystem.com
 127.0.0.1 securepubads.g.doubleclick.net
 127.0.0.1 yads.c.yimg.jp
+127.0.0.1 m.media-amazon.com
