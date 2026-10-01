@@ -50,3 +50,4 @@
 
 # livedoor.blog
 127.0.0.1 js.ad-stir.com
+127.0.0.1 media-amazon.com
