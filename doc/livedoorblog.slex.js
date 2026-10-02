@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           カスタムCSS挿入
 // @description    特定のサイトに自作のCSSを適応します。
-// @include        https://hirukawamura.livedoor.blog/*/*
+// @match          https://*.livedoor.blog/*
 // @require        api
 // ==/UserScript==
 
