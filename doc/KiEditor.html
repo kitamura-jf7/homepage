@@ -211,12 +211,39 @@
         <DT><span class="sec01">履歴</span></DT>
         <DL>
 
-            <DT> -- Ver 1.94.k4  2026/09/26 -- <span class="highlight">(当サイトでのみ公開中)</span></DT>
+            <DT> -- Ver 1.96.k6  2026/10/26 -- <span class="highlight">(当サイトでのみ公開中)</span></DT>
             <UL>
-                <DT><A HREF="../downdata/KiE193k4.exe">
-                    <span class="sec01">DOWNLOAD (KiE193k4.exe)</span>
+                <DT><A HREF="../downdata/KiE196k6.exe">
+                    <span class="sec01">DOWNLOAD (KiE196k6.exe)</span>
                 </A></DT>
+                <LI>DB接続状態でない時、補完表示でエラーになっていたのを修正。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.96.k5  2026/10/21 --</DT>
+            <UL>
+                <LI>次の単語へ移動、前の単語へ移動で区切り判定をダブルコーテーションとシングルコーテーションの中でも区切るようにした。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.95.k5  2026/10/12 --</DT>
+            <UL>
+                <LI>AnyDACでDDL文実行の際、GRANT他のいくつかのレコードセットを返さないコマンドが実行できていなかったのを修正した。
+                <LI>DBの実行結果としてレコードセットを返さない場合の表示結果をsqlplusに似せた感じに変更。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.94.k4  2026/09/26 -- (当サイトでのみ公開)</DT>
+            <UL>
                 <LI>次の単語へ移動、前の単語へ移動で区切り判定をキャレット位置の前後1000バイト程度に絞って判定を行うように修正。絞った中に見つからない場合は、1文字だけ移動。
+            </UL>
+
+            <BR CLEAR="ALL">
+            <DT> -- Ver 1.94.k3  2026/09/23 -- </DT>
+            <UL>
+                <LI>既に起動中のKiEditorにタブを追加して開く際、環境指定があれば同じ環境でのみ追加して開くようにした。
+                <LI>管理者権限ありで起動された時、タイトルバーに(Elevate)を表示するようにした。
+                <LI>次の単語へ移動、前の単語へ移動で区切り判定を微修正。
             </UL>
 
             <BR CLEAR="ALL">
